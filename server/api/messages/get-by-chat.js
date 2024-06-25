@@ -8,7 +8,7 @@ const router = express.Router();
 /**
  * Fetches all messages for a chat
  *
- * @param {number} chatId  Unique identifier for the chat
+ * @param {string} chatId  Unique identifier for the chat
  *
  * @return  {MessageType[]} A collection of messages
  */

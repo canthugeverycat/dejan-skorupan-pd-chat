@@ -1,4 +1,5 @@
 const { faker } = require('@faker-js/faker');
+const generateUniqueID = require('../utils/generateUniqueID');
 
 /**
  * Creates mock contacts objects
@@ -9,7 +10,7 @@ const { faker } = require('@faker-js/faker');
  */
 const createMockContacts = (length) =>
   Array.from({ length }, (_, i) => ({
-    id: i,
+    id: generateUniqueID(),
     name: faker.person.fullName(),
   }));
 

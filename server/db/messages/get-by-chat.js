@@ -3,7 +3,7 @@ const db = require('../db');
 /**
  * Get all of the Messages for the Chat
  *
- * @param {number} chatId    Unique id for the chat
+ * @param {string} chatId    Unique id for the chat
  *
  * @return  {MessageType[]}  Collection of Contact objects
  */

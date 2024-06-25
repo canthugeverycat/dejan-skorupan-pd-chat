@@ -2,7 +2,8 @@ const db = require('../db');
 
 /**
  * Get a single User Profile by its id
- * @param {number} id
+ *
+ * @param {string} id
  *
  * @return {UserProfileType}
  */

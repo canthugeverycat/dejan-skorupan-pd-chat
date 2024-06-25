@@ -9,7 +9,7 @@ const router = express.Router();
  * Creates a new Message
  *
  * @param {string} body    Message body
- * @param {number} chatId  Reference id of the chat
+ * @param {text} chatId    Reference id of the chat
  * @param {number} sender  0 - User  1 - Contact
  *
  * @return {MessageType} Newly created Message

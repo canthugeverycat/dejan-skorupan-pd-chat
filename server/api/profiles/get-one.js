@@ -8,7 +8,7 @@ const router = express.Router();
 /**
  * Fetches a UserProfile by its id
  *
- * @param {number} id
+ * @param {string} id
  *
  * @return  {UserProfileType}
  */

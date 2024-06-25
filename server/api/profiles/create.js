@@ -3,7 +3,7 @@ const {
   profiles: dbProfiles,
   contacts: dbContacts,
 } = require('../../db/index');
-const createMockContacts = require('../utils/createMockContacts');
+const createMockContacts = require('../../utils/createMockContacts');
 
 const router = express.Router();
 

@@ -1,4 +1,6 @@
 const db = require('../db');
+const generateUniqueID = require('../../utils/generateUniqueID');
+
 const getById = require('./get-one');
 
 /**
@@ -9,18 +11,24 @@ const getById = require('./get-one');
  * @returns {UserProfileType}
  */
 const create = ({ name }) => {
+  const id = generateUniqueID();
+
   return new Promise((resolve, reject) => {
-    db.run(`INSERT INTO profiles (name) VALUES (?)`, [name], function (error) {
-      if (error) {
-        reject(error);
+    db.run(
+      `INSERT INTO profiles (id, name) VALUES (?, ?)`,
+      [id, name],
+      (error) => {
+        if (error) {
+          reject(error);
 
-        return;
+          return;
+        }
+
+        getById(id)
+          .then((data) => resolve(data))
+          .catch((err) => reject(err));
       }
-
-      getById(this.lastID)
-        .then((data) => resolve(data))
-        .catch((err) => reject(err));
-    });
+    );
   });
 };
 

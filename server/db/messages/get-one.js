@@ -3,7 +3,7 @@ const db = require('../db');
 /**
  * Get a single Message by its id
  *
- * @param {number} id
+ * @param {string} id
  *
  * @return {MessageType}
  */

@@ -12,7 +12,7 @@ const router = express.Router();
  */
 router.get('/:id/contacts', async (req, res) => {
   const { id } = req.params;
-  console.log('getting by profile', id);
+
   try {
     const users = await dbGetByProfile(id);
     res.json(users);
