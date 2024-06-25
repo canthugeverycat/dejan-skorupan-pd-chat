@@ -10,7 +10,7 @@ const router = express.Router();
 /**
  * Creates a new UserProfile
  *
- * @return {UserProfileType} Id of the newly created profile
+ * @return {UserProfileType} Newly created profile
  */
 router.post('/', async (req, res) => {
   const { name } = req.body;

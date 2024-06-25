@@ -10,7 +10,7 @@ const router = express.Router();
  *
  * @param {number} id
  *
- * @return  {UserProfile}
+ * @return  {UserProfileType}
  */
 router.get('/:id', async (req, res) => {
   const { id } = req.params;

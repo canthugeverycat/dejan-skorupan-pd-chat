@@ -6,7 +6,7 @@ const getById = require('./get-one');
  *
  * @param {string} name Display name
  *
- * @returns {UserProfile}
+ * @returns {UserProfileType}
  */
 const create = ({ name }) => {
   return new Promise((resolve, reject) => {

@@ -18,6 +18,16 @@ db.serialize(() => {
       FOREIGN KEY(profileId) REFERENCES profiles(id)
     )
   `);
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      body TEXT,
+      createdAt TEXT,
+      chatId NUMBER,
+      sender INTEGER
+    )
+  `);
 });
 
 module.exports = db;
