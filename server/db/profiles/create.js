@@ -2,16 +2,15 @@ const db = require('../db');
 const getById = require('./get-one');
 
 /**
- * Creates a new User item
+ * Creates a new UserProfile
  *
- * @param {string} name Display name of the current user
+ * @param {string} name Display name
  *
+ * @returns {UserProfile}
  */
 const create = ({ name }) => {
   return new Promise((resolve, reject) => {
-    const createdAt = new Date().toISOString();
-
-    db.run(`INSERT INTO users (name) VALUES (?)`, [name], function (error) {
+    db.run(`INSERT INTO profiles (name) VALUES (?)`, [name], function (error) {
       if (error) {
         reject(error);
 

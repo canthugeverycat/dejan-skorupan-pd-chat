@@ -1,11 +1,14 @@
 const express = require('express');
-const getAllRouter = require('./users/get-all');
-const createRouter = require('./users/create');
+const profilesCreate = require('./profiles/create');
+const profilesGetOne = require('./profiles/get-one');
+const contactsGetByProfile = require('./contacts/get-by-profile');
 
 const router = express.Router();
 
 /** Set up API endpoints */
-router.use('/', getAllRouter);
-router.use('/', createRouter);
+router.use('/', profilesCreate);
+router.use('/', profilesGetOne);
+
+router.use('/', contactsGetByProfile);
 
 module.exports = router;

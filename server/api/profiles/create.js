@@ -1,20 +1,24 @@
 const express = require('express');
 const {
-  users: { create: dbCreate },
+  profiles: dbProfiles,
+  contacts: dbContacts,
 } = require('../../db/index');
+const createMockContacts = require('../utils/createMockContacts');
 
 const router = express.Router();
 
 /**
- * Creates a new User item
+ * Creates a new UserProfile
  *
- * @return {string} Id of the newly created item
+ * @return {UserProfileType} Id of the newly created profile
  */
 router.post('/', async (req, res) => {
   const { name } = req.body;
 
   try {
-    const data = await dbCreate({ name });
+    const data = await dbProfiles.create({ name });
+
+    await dbContacts.createForProfile(data.id, createMockContacts(10));
 
     res.status(201).json(data);
   } catch (error) {

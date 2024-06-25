@@ -1,14 +1,14 @@
 const db = require('../db');
 
 /**
- * Get a single user by its id
+ * Get a single User Profile by its id
  * @param {number} id
  *
- * @return {UserType}
+ * @return {UserProfileType}
  */
 const getOne = (id) => {
   return new Promise((resolve, reject) => {
-    db.get(`SELECT * FROM users WHERE id = ?`, [id], (error, data) => {
+    db.get(`SELECT * FROM profiles WHERE id = ?`, [id], (error, data) => {
       error ? reject(error) : resolve(data);
     });
   });

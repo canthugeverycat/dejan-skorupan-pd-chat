@@ -5,7 +5,7 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
-const usersRouter = require('./api');
+const profilesRouter = require('./api');
 
 const app = express();
 const server = http.createServer(app);
@@ -19,7 +19,7 @@ app.use(
   })
 );
 
-app.use('/api/users', usersRouter);
+app.use('/api/profiles', profilesRouter);
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {

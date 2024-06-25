@@ -1,4 +1,13 @@
-const getAll = require('./users/get-all');
-const create = require('./users/create');
+const profilesCreate = require('./profiles/create');
+const profilesGetOne = require('./profiles/get-one');
 
-module.exports = { users: { getAll, create } };
+const contactsCreateForProfile = require('./contacts/create-for-profile');
+const contactsGetByProfile = require('./contacts/get-by-profile');
+
+module.exports = {
+  profiles: { getOne: profilesGetOne, create: profilesCreate },
+  contacts: {
+    getByProfile: contactsGetByProfile,
+    createForProfile: contactsCreateForProfile,
+  },
+};
