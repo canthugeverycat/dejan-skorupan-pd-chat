@@ -11,15 +11,23 @@ import NewUser from './routes/new-user';
  */
 const App = () => {
   const navigate = useNavigate();
-  const { userStore } = useStore();
+  const { userStore, messagesStore } = useStore();
 
   useEffect(() => {
     if (!userStore.existingProfileId) {
       navigate('/new-user');
     } else {
-      userStore.loadProfile();
+      userStore.loadProfile().catch(() => {
+        navigate('/new-user');
+      });
     }
   }, []);
+
+  useEffect(() => {
+    if (userStore.contacts.length) {
+      messagesStore.connectWebSocket();
+    }
+  }, [userStore.contacts.length]);
 
   return (
     <div className="app-container">

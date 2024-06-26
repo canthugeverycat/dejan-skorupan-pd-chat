@@ -1,10 +1,23 @@
 const { faker } = require('@faker-js/faker');
 
+// Chance the bot will like received message
+const LIKE_PROBABILITY = 0.3;
+
+// Time it will take the user to like
 const LIKE_TIME_MIN = 500;
 const LIKE_TIME_MAX = 1200;
+
+// Time between receiving a message and starting to type
+// (simulates reading)
 const REACTION_TIME_MIN = 800;
 const REACTION_TIME_MAX = 1500;
-const BOT_TYPING_SPEED_CHARS_PER_SECOND = 7;
+
+// Time between liking a message and starting to type
+// (only applies if the message would be liked)
+const LIKE_REACTION_TIMES_BUFFER = 300;
+
+// How fast the bot will type
+const BOT_TYPING_SPEED_CHARS_PER_SECOND = 14;
 
 /**
  * Generates a message action from contact to user
@@ -14,7 +27,7 @@ const BOT_TYPING_SPEED_CHARS_PER_SECOND = 7;
  */
 const generateBotResponse = () => {
   const body = faker.lorem.sentence();
-  const shouldLikeMessage = faker.datatype.boolean();
+  const shouldLikeMessage = faker.datatype.boolean(LIKE_PROBABILITY);
 
   // Time it takes the bot to like the user's message
   const likeTime = faker.number.int({
@@ -24,14 +37,19 @@ const generateBotResponse = () => {
 
   // Time it takes the bot to start typing
   const reactionTime = faker.number.int({
-    min: shouldLikeMessage ? likeTime + REACTION_TIME_MIN : REACTION_TIME_MIN,
-    max: shouldLikeMessage ? likeTime + REACTION_TIME_MAX : REACTION_TIME_MAX,
+    min: shouldLikeMessage
+      ? likeTime + LIKE_REACTION_TIMES_BUFFER + REACTION_TIME_MIN
+      : REACTION_TIME_MIN,
+    max: shouldLikeMessage
+      ? likeTime + LIKE_REACTION_TIMES_BUFFER + REACTION_TIME_MAX
+      : REACTION_TIME_MAX,
   });
 
   // Time it takes the bot to finish typing
   const typingTime = faker.number.int({
     min: reactionTime,
-    max: reactionTime + BOT_TYPING_SPEED_CHARS_PER_SECOND * 1000,
+    max:
+      reactionTime + (body.length / BOT_TYPING_SPEED_CHARS_PER_SECOND) * 1000,
   });
 
   return {

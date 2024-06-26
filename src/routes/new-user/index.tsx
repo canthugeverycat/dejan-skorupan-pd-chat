@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { observer } from 'mobx-react-lite';
 import { useNavigate } from 'react-router-dom';
 
 import { useStore } from '../../hooks/use-store';
@@ -7,17 +7,15 @@ import { useStore } from '../../hooks/use-store';
  * NewUser route
  */
 const NewUser = () => {
-  const [name, setName] = useState('');
-
   const navigate = useNavigate();
   const { userStore } = useStore();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    userStore.createProfile({ name });
-
-    navigate('/');
+    userStore.createProfile().then((res) => {
+      navigate('/');
+    });
   };
 
   return (
@@ -27,11 +25,7 @@ const NewUser = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Choose your display name
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+            <input type="text" {...userStore.profileForm.name.toInput} />
           </label>
           <button type="submit">Start chatting</button>
         </form>
@@ -40,4 +34,4 @@ const NewUser = () => {
   );
 };
 
-export default NewUser;
+export default observer(NewUser);

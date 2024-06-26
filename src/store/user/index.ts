@@ -1,11 +1,12 @@
 import { action, makeAutoObservable } from 'mobx';
 
-import { fetchContacts as apiFetchContacts } from '../api/contacts';
+import { fetchContacts as apiFetchContacts } from '../../api/contacts';
 import {
   createProfile as apiCreateProfile,
   fetchProfile as apiFetchProfile,
-} from '../api/profile';
-import { ContactType, UserProfileType } from '../globals/types';
+} from '../../api/profile';
+import { ContactType, UserProfileType } from '../../globals/types';
+import { TextInput } from '../forms';
 
 /**
  * A store for the user profile
@@ -15,14 +16,18 @@ export class UserStore {
   isFetching: boolean = false;
   contacts: ContactType[] = [];
   profile: UserProfileType | null = null;
-  existingProfileId: number = Number(localStorage.getItem('pd-chat-user'));
+  profileForm: { name: TextInput } = { name: new TextInput('') };
+
+  existingProfileId: string = localStorage.getItem('pd-chat-user') || '';
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  createProfile({ name }: { name: string }): Promise<void> {
+  createProfile(): Promise<void> {
     this.isLoadingProfile = true;
+
+    const name = this.profileForm.name.value;
 
     return apiCreateProfile({ name })
       .then(
@@ -43,6 +48,11 @@ export class UserStore {
     return apiFetchProfile(this.existingProfileId)
       .then(
         action((data) => {
+          if (!data) {
+            this.clearProfile();
+            throw new Error('Profile not found!');
+          }
+
           this.profile = data;
 
           return this.loadContacts(data.id);
@@ -51,7 +61,7 @@ export class UserStore {
       .finally(action(() => (this.isLoadingProfile = false)));
   }
 
-  loadContacts(profileId: number): Promise<void> {
+  loadContacts(profileId: string): Promise<void> {
     this.isFetching = true;
 
     return apiFetchContacts(profileId)
@@ -61,5 +71,11 @@ export class UserStore {
         })
       )
       .finally(action(() => (this.isFetching = false)));
+  }
+
+  clearProfile() {
+    this.profile = null;
+    this.existingProfileId = '';
+    localStorage.removeItem('pd-chat-user');
   }
 }

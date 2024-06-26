@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { API_BASE_URL } from '../globals/const';
-import { UserProfileType } from '../globals/types';
 
 /**
  * Create a new profile for the user
@@ -21,11 +20,11 @@ export const createProfile = async ({ name }: { name: string }) => {
 /**
  * Fetch an existing user profile
  *
- * @param {number} profileId Display name for the user profile
+ * @param {string} profileId Display name for the user profile
  *
  * @returns {UserProfileType}
  */
-export const fetchProfile = async (profileId: number) => {
+export const fetchProfile = async (profileId: string) => {
   const response = await axios.get(`${API_BASE_URL}/profiles/${profileId}`);
 
   return response.data;
