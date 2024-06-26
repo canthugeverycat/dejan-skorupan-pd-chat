@@ -26,7 +26,8 @@ db.serialize(() => {
       body TEXT,
       createdAt TEXT,
       chatId TEXT,
-      sender INTEGER
+      sender INTEGER,
+      liked INTEGER
     )
   `);
 });

@@ -1,4 +1,5 @@
 const db = require('../db');
+const booleanTransformer = require('../../utils/booleanTransformer');
 
 /**
  * Get all of the Messages for the Chat
@@ -12,7 +13,9 @@ const getByChat = (chatId) => {
     db.all(
       `SELECT * FROM messages WHERE chatId = ? ORDER BY createdAt ASC`,
       [chatId],
-      (error, data) => {
+      (error, rawData) => {
+        const data = rawData.map((d) => booleanTransformer(d));
+
         error ? reject(error) : resolve(data);
       }
     );

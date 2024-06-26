@@ -1,12 +1,12 @@
 const WebSocket = require('ws');
 
 const {
-  messages: { create: dbCreate },
+  messages: { create: dbCreate, update: dbUpdate },
 } = require('../../db/index');
 const generateBotResponse = require('../../utils/generateBotResponse');
 
 /**
- * Helper method to send a message to the current subscribers
+ * Helper method to send a message to current subscribers
  * @param   {WebSocketServer}  wss   Instance of WebSocketServer
  * @param   {any}              data  Data to be send
  */
@@ -28,19 +28,41 @@ const wsSend = (wss, data) => {
  * @param   {MessageType}  message  Last message from the user
  */
 const botReaction = (wss, message) => {
-  const { chatId } = message;
+  const { id, chatId } = message;
 
-  const { reactionTime, typingTime, data } = generateBotResponse();
+  const { shouldLikeMessage, likeTime, reactionTime, typingTime, data } =
+    generateBotResponse();
 
   try {
+    // Simulate liking the user's message
+    if (shouldLikeMessage) {
+      setTimeout(async () => {
+        await dbUpdate({
+          id,
+          liked: true,
+        });
+
+        wsSend(
+          wss,
+          JSON.stringify({ action: 'like', payload: { id, chatId } })
+        );
+      }, likeTime);
+    }
+
     // Simulate typing indicator
     setTimeout(() => {
-      wsSend(wss, JSON.stringify({ type: 'typing', status: true, chatId }));
+      wsSend(
+        wss,
+        JSON.stringify({ action: 'typing', payload: { value: true, chatId } })
+      );
     }, reactionTime);
 
     // Simulate typing time
     setTimeout(async () => {
-      wsSend(wss, JSON.stringify({ type: 'typing', status: false, chatId }));
+      wsSend(
+        wss,
+        JSON.stringify({ action: 'typing', payload: { value: false, chatId } })
+      );
 
       // Create a response message in the database
       const response = await dbCreate({
@@ -49,15 +71,17 @@ const botReaction = (wss, message) => {
       });
 
       // Notify the user
-      wsSend(wss, JSON.stringify({ type: 'message', ...response }));
+      wsSend(wss, JSON.stringify({ action: 'message', payload: response }));
     }, typingTime);
   } catch (error) {
     console.error('WebSocket Error:', error);
     wsSend(
       wss,
       JSON.stringify({
-        type: 'error',
-        message: 'Failed to process the message.',
+        action: 'error',
+        data: {
+          error: 'Failed to process the message.',
+        },
       })
     );
   }

@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 
 /**
- * An initlization function for the websocket to listen to updates
+ * An initlization function for the WebSocket to listen to updates
  *
  * @param   {ExpressServer}  server  An express server instance
  *

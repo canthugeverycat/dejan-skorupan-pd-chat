@@ -8,6 +8,7 @@ const contactsGetByProfile = require('./contacts/get-by-profile');
 
 // Messages
 const messagesCreate = require('./messages/create');
+const messagesUpdate = require('./messages/update');
 const messagesGetOne = require('./messages/get-one');
 const messagesGetByChat = require('./messages/get-by-chat');
 
@@ -19,6 +20,7 @@ module.exports = {
   },
   messages: {
     create: messagesCreate,
+    update: messagesUpdate,
     getOne: messagesGetOne,
     getByChat: messagesGetByChat,
   },

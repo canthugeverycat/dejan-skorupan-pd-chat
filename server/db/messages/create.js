@@ -1,5 +1,6 @@
 const db = require('../db');
 const generateUniqueID = require('../../utils/generateUniqueID');
+const booleanTransformer = require('../../utils/booleanTransformer');
 
 const getById = require('./get-one');
 
@@ -19,8 +20,8 @@ const create = ({ body, chatId, sender }) => {
     const createdAt = new Date().toISOString();
 
     db.run(
-      `INSERT INTO messages (id, body, createdAt, chatId, sender) VALUES (?, ?, ?, ?, ?)`,
-      [id, body, createdAt, chatId, sender],
+      `INSERT INTO messages (id, body, createdAt, chatId, sender, liked) VALUES (?, ?, ?, ?, ?, ?)`,
+      [id, body, createdAt, chatId, sender, 0],
       (error) => {
         if (error) {
           reject(error);
@@ -29,7 +30,7 @@ const create = ({ body, chatId, sender }) => {
         }
 
         getById(id)
-          .then((data) => resolve(data))
+          .then((data) => resolve(booleanTransformer(data)))
           .catch((err) => reject(err));
       }
     );
