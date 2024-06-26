@@ -14,6 +14,7 @@ db.serialize(() => {
     CREATE TABLE IF NOT EXISTS contacts (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
+      gender TEXT,
       profileId INTEGER,
       FOREIGN KEY(profileId) REFERENCES profiles(id)
     )

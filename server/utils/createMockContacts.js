@@ -9,9 +9,16 @@ const generateUniqueID = require('../utils/generateUniqueID');
  * @return  {ContactType[]}
  */
 const createMockContacts = (length) =>
-  Array.from({ length }, (_, i) => ({
-    id: generateUniqueID(),
-    name: faker.person.fullName(),
-  }));
+  Array.from({ length }, (_, i) => {
+    const id = generateUniqueID();
+    const gender = faker.person.sex();
+    const name = faker.person.firstName(gender);
+
+    return {
+      id,
+      gender,
+      name,
+    };
+  });
 
 module.exports = createMockContacts;

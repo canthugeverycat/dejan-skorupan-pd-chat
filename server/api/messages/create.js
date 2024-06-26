@@ -2,6 +2,7 @@ const express = require('express');
 const {
   messages: { create: dbCreate },
 } = require('../../db/index');
+const botReaction = require('../../ws/messages/bot-reaction');
 
 const router = express.Router();
 
@@ -20,6 +21,8 @@ router.post('/:chatId/messages', async (req, res) => {
 
   try {
     const data = await dbCreate({ body, chatId, sender });
+
+    botReaction(req.app.get('wss'), data);
 
     res.status(201).json(data);
   } catch (error) {

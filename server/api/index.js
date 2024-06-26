@@ -16,7 +16,7 @@ router.use('/profiles', profilesGetOne);
 
 router.use('/profiles', contactsGetByProfile);
 
-router.use('/chat', messagesCreate);
-router.use('/chat', messagesGetByChat);
+router.use('/chats', messagesCreate);
+router.use('/chats', messagesGetByChat);
 
 module.exports = router;

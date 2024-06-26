@@ -11,12 +11,12 @@ const createForProfile = (profileId, contacts) => {
   return new Promise((resolve, reject) => {
     db.run('BEGIN TRANSACTION', () => {
       const insertStatement = db.prepare(
-        'INSERT INTO contacts (id, name, profileId) VALUES (?, ?, ?)'
+        'INSERT INTO contacts (id, name, gender, profileId) VALUES (?, ?, ?, ?)'
       );
 
       contacts.forEach((contact) => {
-        const { id, name } = contact;
-        insertStatement.run(id, name, profileId);
+        const { id, name, gender } = contact;
+        insertStatement.run(id, name, gender, profileId);
       });
 
       db.run('COMMIT', (error) => {

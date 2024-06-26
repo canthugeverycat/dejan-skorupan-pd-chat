@@ -5,6 +5,8 @@
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
+const initializeWS = require('./ws');
+
 const profilesRouter = require('./api');
 
 const app = express();
@@ -20,6 +22,9 @@ app.use(
 );
 
 app.use('/api', profilesRouter);
+
+const wss = initializeWS(server);
+app.set('wss', wss);
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
