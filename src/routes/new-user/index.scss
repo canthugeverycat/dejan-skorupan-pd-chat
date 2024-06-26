@@ -1,0 +1,48 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
+
+.new-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: gutter(4);
+  min-width: 300px;
+
+  &-title {
+    @include typography(24px, $grey, 500, 'Mulish');
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: gutter(2);
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: gutter(2);
+      @include typography(14px);
+    }
+
+    input {
+      border: none;
+      background: $secondary-color;
+      padding: gutter(2);
+      text-align: center;
+      text-shadow: $text-shadow-default;
+
+      @include typography(20px, $white, 700);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .button--loading {
+      .icon--plane {
+        animation: flyDiagonal 2s linear infinite;
+      }
+    }
+  }
+}

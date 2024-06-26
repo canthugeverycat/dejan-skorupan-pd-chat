@@ -1,0 +1,28 @@
+// A helper function to set text properties
+@mixin typography(
+  $size: false,
+  $color: false,
+  $weight: false,
+  $line-height: $size,
+  $font-family: 'Open Sans'
+) {
+  @if $size {
+    font-size: $size;
+  }
+
+  @if $color {
+    color: $color;
+  }
+
+  @if $weight {
+    font-weight: $weight;
+  }
+
+  @if $line-height {
+    line-height: $line-height;
+  }
+
+  @if $font-family {
+    font-family: $font-family;
+  }
+}

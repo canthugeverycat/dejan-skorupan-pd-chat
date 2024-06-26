@@ -17,7 +17,7 @@ const REACTION_TIME_MAX = 1500;
 const LIKE_REACTION_TIMES_BUFFER = 300;
 
 // How fast the bot will type
-const BOT_TYPING_SPEED_CHARS_PER_SECOND = 14;
+const BOT_TYPING_SPEED_CHARS_PER_SECOND = 7;
 
 /**
  * Generates a message action from contact to user

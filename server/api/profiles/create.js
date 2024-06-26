@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
 
     await dbContacts.createForProfile(data.id, createMockContacts(10));
 
-    res.status(201).json(data);
+    setTimeout(() => {
+      res.status(201).json(data);
+    }, 1000);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -6,6 +6,8 @@ import Chat from './routes/chat';
 import Home from './routes/home';
 import NewUser from './routes/new-user';
 
+import './App.scss';
+
 /**
  * Main skeleton of the app, handles routing
  */
@@ -30,7 +32,7 @@ const App = () => {
   }, [userStore.contacts.length]);
 
   return (
-    <div className="app-container">
+    <div className="container">
       <Routes>
         <Route path="/" element={<Home />}>
           <Route path="/chat/:id" element={<Chat />} />
