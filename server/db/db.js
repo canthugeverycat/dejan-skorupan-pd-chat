@@ -6,15 +6,17 @@ db.serialize(() => {
   db.run(`
     CREATE TABLE IF NOT EXISTS profiles (
       id TEXT PRIMARY KEY,
-      name TEXT NOT NULL
+      name TEXT,
+      avatar NUMBER
     )
   `);
 
   db.run(`
     CREATE TABLE IF NOT EXISTS contacts (
       id TEXT PRIMARY KEY,
-      name TEXT NOT NULL,
+      name TEXT,
       gender TEXT,
+      avatar NUMBER,
       profileId INTEGER,
       FOREIGN KEY(profileId) REFERENCES profiles(id)
     )

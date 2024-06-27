@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import { useStore } from '../../hooks/use-store';
 
+import './index.scss';
+
+import SendButton from '../SendButton';
+
 const Controls = () => {
   const { id } = useParams();
   const { messagesStore } = useStore();
@@ -16,17 +20,15 @@ const Controls = () => {
   };
 
   return (
-    <div className="controls">
-      <form className="controls-message-box" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Type a message"
-          {...messagesStore.messageForm.body.toInput}
-          autoFocus
-        />
-        <button type="submit">{'>'}</button>
-      </form>
-    </div>
+    <form className="controls" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Type a message"
+        {...messagesStore.messageForm.body.toInput}
+        autoFocus
+      />
+      <SendButton disabled={!messagesStore.messageForm.body.value.length} />
+    </form>
   );
 };
 

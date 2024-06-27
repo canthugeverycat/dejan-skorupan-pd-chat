@@ -7,7 +7,7 @@ import {
 } from '../../api/messages';
 import { WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
 import { MessageType } from '../../globals/types';
-import { TextInput } from '../forms';
+import { TextInput } from '../forms/TextInput';
 
 /**
  * A store for chat messages

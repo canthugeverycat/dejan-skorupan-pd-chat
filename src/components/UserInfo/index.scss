@@ -40,9 +40,9 @@
     svg {
       transform: scale(1);
 
-      animation: pulse 2s infinite;
+      animation: pulse-green 2s infinite;
 
-      box-shadow: 0 0 0 0 rgba(0, 255, 0, 1);
+      box-shadow: 0 0 0 0 $green;
       border-radius: 50%;
     }
   }

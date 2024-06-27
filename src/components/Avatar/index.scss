@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
+
+$avatar-size: 40px;
+
+.avatar {
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid $primary-color;
+  border-radius: 50%;
+  background: url('../../assets/avatars.jpg');
+  background-size: 800%;
+  background-repeat: no-repeat;
+  background-color: $secondary-color;
+  width: $avatar-size;
+  height: $avatar-size;
+
+  &--interactable {
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+
+  &--selected {
+    outline: 4px solid $primary-color;
+  }
+}

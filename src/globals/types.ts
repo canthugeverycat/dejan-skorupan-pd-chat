@@ -2,11 +2,13 @@ export type ContactType = {
   id: string;
   name: string;
   gender: 'male' | 'female';
+  avatar: number;
 };
 
 export type UserProfileType = {
   id: string;
   name: string;
+  avatar: number;
 };
 
 export type MessageType = {

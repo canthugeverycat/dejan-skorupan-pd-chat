@@ -26,6 +26,10 @@
     height: 60px;
   }
 
+  &-header--right {
+    justify-content: flex-end;
+  }
+
   &-main {
     display: flex;
     flex: 1;
@@ -42,7 +46,7 @@
   }
 
   .home-icon--plane {
-    animation: bounceIdle 2s linear infinite;
+    animation: bounce-idle 2s linear infinite;
     color: $primary-color;
   }
 }

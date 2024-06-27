@@ -8,6 +8,7 @@
   align-items: center;
   padding: gutter(4);
   min-width: 300px;
+  user-select: none;
 
   &-title {
     @include typography(24px, $grey, 500, 'Mulish');
@@ -39,7 +40,7 @@
       }
     }
 
-    .icon--wind {
+    .new-user-icon--wind {
       position: absolute;
       transform: translate(-10px, 15px) rotate(120deg);
       opacity: 0;
@@ -47,11 +48,11 @@
 
     .button--loading {
       .new-user-icon--plane {
-        animation: flyOutDiagonal 1.5s linear forwards;
+        animation: fly-out-diagonal 1.5s linear forwards;
       }
 
       .new-user-icon--wind {
-        animation: fadeDiagonal 1s linear forwards;
+        animation: fade-diagonal 1s linear forwards;
       }
     }
   }

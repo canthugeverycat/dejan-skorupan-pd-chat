@@ -9,9 +9,16 @@ import { API_BASE_URL } from '../globals/const';
  *
  * @returns {UserProfileType}
  */
-export const createProfile = async ({ name }: { name: string }) => {
+export const createProfile = async ({
+  name,
+  avatar,
+}: {
+  name: string;
+  avatar: number;
+}) => {
   const response = await axios.post(`${API_BASE_URL}/profiles`, {
     name,
+    avatar,
   });
 
   return response.data;

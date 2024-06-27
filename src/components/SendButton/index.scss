@@ -1,0 +1,72 @@
+@import '../../styles/variables.scss';
+
+$button-size: 15px;
+$border-size: $button-size / 5;
+
+.send-button {
+  position: relative;
+
+  opacity: 0.8;
+
+  transition: transform 0.1s linear;
+
+  cursor: pointer;
+
+  border: $border-size solid darken($primary-color, 10%);
+
+  border-radius: $border-radius-small $border-radius-small $border-radius-small
+    0;
+  background: $primary-color;
+
+  width: $button-size;
+  height: $button-size * 2;
+
+  &:before {
+    position: absolute;
+    right: 100%;
+    bottom: $button-size / -5;
+    z-index: 0;
+
+    border: $border-size solid darken($primary-color, 10%);
+    border-right: none;
+    border-radius: $border-radius-small 0 0 $border-radius-small;
+
+    background: $primary-color;
+
+    width: $button-size * 0.7;
+    height: $button-size * 1.1;
+
+    content: '';
+  }
+
+  &-symbol:after {
+    position: absolute;
+    bottom: $button-size * -0.1;
+    left: $button-size * -0.4;
+
+    content: '↵';
+
+    color: $grey;
+
+    font-size: $button-size;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    border-color: darken($light-grey, 10%);
+    background: $light-grey;
+
+    &:before {
+      border-color: darken($light-grey, 10%);
+      background: $light-grey;
+    }
+  }
+}

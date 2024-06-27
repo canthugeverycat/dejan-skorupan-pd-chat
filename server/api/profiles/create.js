@@ -10,13 +10,16 @@ const router = express.Router();
 /**
  * Creates a new UserProfile
  *
+ * @param {string} name Profile name
+ * @param {number} avatar Profile avatar
+ *
  * @return {UserProfileType} Newly created profile
  */
 router.post('/', async (req, res) => {
-  const { name } = req.body;
+  const { name, avatar } = req.body;
 
   try {
-    const data = await dbProfiles.create({ name });
+    const data = await dbProfiles.create({ name, avatar });
 
     await dbContacts.createForProfile(data.id, createMockContacts(10));
 

@@ -7,16 +7,17 @@ const getById = require('./get-one');
  * Creates a new UserProfile
  *
  * @param {string} name Display name
+ * @param {number} avatar Profile avatar
  *
  * @returns {UserProfileType}
  */
-const create = ({ name }) => {
+const create = ({ name, avatar }) => {
   const id = generateUniqueID();
 
   return new Promise((resolve, reject) => {
     db.run(
-      `INSERT INTO profiles (id, name) VALUES (?, ?)`,
-      [id, name],
+      `INSERT INTO profiles (id, name, avatar) VALUES (?, ?, ?)`,
+      [id, name, avatar],
       (error) => {
         if (error) {
           reject(error);

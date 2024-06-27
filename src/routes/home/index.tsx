@@ -17,7 +17,7 @@ const Home = () => {
       <Contacts />
 
       <div className="home-content">
-        <div className="home-header">
+        <div className={`home-header ${!id ? 'home-header--right' : ''}`}>
           <UserInfo type="contact" />
           <UserInfo type="user" />
         </div>

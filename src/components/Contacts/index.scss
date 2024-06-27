@@ -8,6 +8,7 @@
   box-shadow: $box-shadow-default;
   width: 200px;
   overflow: hidden;
+  user-select: none;
 
   &-header {
     display: flex;
@@ -58,19 +59,17 @@
     gap: gutter(2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     padding: gutter(2);
-    color: $grey;
     text-decoration: none;
-    @include typography(14px, $black, 600);
+    @include typography(14px, $grey, 600);
   }
 
   &-list-item a.is-active {
     background: $secondary-color;
     color: $white;
     font-weight: 700;
-  }
 
-  &-list-item-avatar {
-    width: 40px;
-    height: 40px;
+    .avatar {
+      background-color: $white;
+    }
   }
 }

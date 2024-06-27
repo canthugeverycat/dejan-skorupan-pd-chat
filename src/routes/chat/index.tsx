@@ -1,15 +1,13 @@
 import Controls from '../../components/Controls';
-import Header from '../../components/Header';
-import Messages from '../../components/Messages';
+import MessageList from '../../components/MessageList';
+
+import './index.scss';
 
 const Chat = () => {
   return (
-    <section className="page page-chat">
-      <div className="page-content">
-        <Header />
-        <Messages />
-        <Controls />
-      </div>
+    <section className="chat">
+      <MessageList />
+      <Controls />
     </section>
   );
 };

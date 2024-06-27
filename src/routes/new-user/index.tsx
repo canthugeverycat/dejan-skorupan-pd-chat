@@ -2,12 +2,12 @@ import { observer } from 'mobx-react-lite';
 import { FaCloudversify, FaRegPaperPlane } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
+import AvatarPicker from '../../components/AvatarPicker';
+import Button from '../../components/Button';
 import Logo from '../../components/Logo';
 import { useStore } from '../../hooks/use-store';
 
 import './index.scss';
-
-import Button from '../../components/Button';
 
 /**
  * NewUser route
@@ -38,6 +38,7 @@ const NewUser = () => {
             autoFocus
           />
         </label>
+        <AvatarPicker />
         <Button
           type="submit"
           isLoading={userStore.isLoadingProfile || userStore.isFetching}

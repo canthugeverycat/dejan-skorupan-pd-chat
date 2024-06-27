@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { NavLink } from 'react-router-dom';
 
 import { useStore } from '../../hooks/use-store';
+import Avatar from '../Avatar';
 import Logo from '../Logo';
 
 import './index.scss';
@@ -28,11 +29,7 @@ const Contacts = () => {
               className={setActiveClass}
               to={`/chat/${profile?.id}-${contact.id}`}
             >
-              <img
-                className="contacts-list-item-avatar"
-                src="https://cdn.iconscout.com/icon/free/png-512/free-avatar-370-456322.png?f=webp&w=512"
-                alt="Contact Avatar"
-              />
+              <Avatar type={contact.avatar} />
               {contact.name}
             </NavLink>
           </li>

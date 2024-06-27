@@ -1,0 +1,11 @@
+@import '../../styles/variables.scss';
+
+.chat {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: gutter(0.5) gutter(4) gutter(2) gutter(4);
+  width: 100%;
+  height: 100%;
+}
