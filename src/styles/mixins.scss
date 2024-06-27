@@ -3,7 +3,6 @@
   $size: false,
   $color: false,
   $weight: false,
-  $line-height: $size,
   $font-family: 'Open Sans'
 ) {
   @if $size {
@@ -16,10 +15,6 @@
 
   @if $weight {
     font-weight: $weight;
-  }
-
-  @if $line-height {
-    line-height: $line-height;
   }
 
   @if $font-family {

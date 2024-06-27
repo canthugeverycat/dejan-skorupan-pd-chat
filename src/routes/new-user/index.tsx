@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { FaRegPaperPlane } from 'react-icons/fa';
+import { FaCloudversify, FaRegPaperPlane } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import Logo from '../../components/Logo';
@@ -32,13 +32,21 @@ const NewUser = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Choose your display name
-          <input type="text" {...userStore.profileForm.name.toInput} />
+          <input
+            type="text"
+            {...userStore.profileForm.name.toInput}
+            autoFocus
+          />
         </label>
         <Button
           type="submit"
           isLoading={userStore.isLoadingProfile || userStore.isFetching}
         >
-          Start chatting <FaRegPaperPlane className="icon--plane" size={14} />
+          Start chatting
+          <div>
+            <FaCloudversify className="new-user-icon--wind" size={20} />
+            <FaRegPaperPlane className="new-user-icon--plane" size={14} />
+          </div>
         </Button>
       </form>
     </section>

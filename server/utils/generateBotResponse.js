@@ -17,7 +17,7 @@ const REACTION_TIME_MAX = 1500;
 const LIKE_REACTION_TIMES_BUFFER = 300;
 
 // How fast the bot will type
-const BOT_TYPING_SPEED_CHARS_PER_SECOND = 7;
+const BOT_TYPING_SPEED_CHARS_PER_SECOND = 12;
 
 /**
  * Generates a message action from contact to user
@@ -45,12 +45,9 @@ const generateBotResponse = () => {
       : REACTION_TIME_MAX,
   });
 
-  // Time it takes the bot to finish typing
-  const typingTime = faker.number.int({
-    min: reactionTime,
-    max:
-      reactionTime + (body.length / BOT_TYPING_SPEED_CHARS_PER_SECOND) * 1000,
-  });
+  // Time it takes the bot to finish typing the generated message
+  const typingTime =
+    reactionTime + (body.length / BOT_TYPING_SPEED_CHARS_PER_SECOND) * 1000;
 
   return {
     shouldLikeMessage,

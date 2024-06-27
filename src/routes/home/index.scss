@@ -1,5 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
+@import '../../styles/animations.scss';
 
 .home {
   display: flex;
@@ -7,12 +8,41 @@
   height: calc(100vh - 100px);
 
   &-content {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
   }
 
   &-header {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    box-shadow: $box-shadow-vertical;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    background: $white;
+    padding: gutter(2);
+    height: 60px;
   }
 
   &-main {
-    overflow: scroll;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-main-title {
+    @include typography(14px, $black, 500, 'Mulish');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: gutter(4);
+  }
+
+  .home-icon--plane {
+    animation: bounceIdle 2s linear infinite;
+    color: $primary-color;
   }
 }

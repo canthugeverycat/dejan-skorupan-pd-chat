@@ -1,10 +1,10 @@
+import { FaRegPaperPlane } from 'react-icons/fa';
 import { Outlet, useParams } from 'react-router-dom';
 
 import Contacts from '../../components/Contacts';
+import UserInfo from '../../components/UserInfo';
 
 import './index.scss';
-
-import { useStore } from '../../hooks/use-store';
 
 /**
  * Home Page
@@ -12,26 +12,22 @@ import { useStore } from '../../hooks/use-store';
 const Home = () => {
   const { id } = useParams();
 
-  const {
-    userStore: { profile },
-  } = useStore();
-
   return (
     <section className="home" aria-label="Chats">
       <Contacts />
 
       <div className="home-content">
         <div className="home-header">
-          <p className="home-header-profile">
-            {profile?.name}
-            <span className="contacts-header-status">
-              <span className="contacts-header-status-circle"></span>Online
-            </span>
-          </p>
+          <UserInfo type="contact" />
+          <UserInfo type="user" />
         </div>
         <div className="home-main">
-          <h1 className="title">Chats</h1>
-          {!id && <h2>Select a contact to start a chat with them</h2>}
+          {!id && (
+            <h2 className="home-main-title">
+              <FaRegPaperPlane className="home-icon--plane" size={44} />
+              Select a contact to start chatting with them
+            </h2>
+          )}
 
           <Outlet />
         </div>

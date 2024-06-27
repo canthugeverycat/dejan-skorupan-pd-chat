@@ -2,7 +2,10 @@
 @import '../../styles/mixins.scss';
 
 .button {
+  display: flex;
   position: relative;
+  justify-content: center;
+  gap: gutter();
   opacity: 1;
   transition: all 0.2s linear;
   cursor: pointer;

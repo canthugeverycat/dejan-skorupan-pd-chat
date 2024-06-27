@@ -22,6 +22,7 @@ const Controls = () => {
           type="text"
           placeholder="Type a message"
           {...messagesStore.messageForm.body.toInput}
+          autoFocus
         />
         <button type="submit">{'>'}</button>
       </form>

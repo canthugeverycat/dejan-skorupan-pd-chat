@@ -3,7 +3,9 @@
 
 .contacts {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
+  box-shadow: $box-shadow-default;
   width: 200px;
   overflow: hidden;
 
@@ -11,9 +13,11 @@
     display: flex;
     align-items: center;
     gap: gutter(2);
-    box-shadow: $box-shadow-default;
+    box-sizing: border-box;
+    box-shadow: $box-shadow-vertical;
     background: $white;
     padding: gutter(1) gutter(2);
+    height: 60px;
   }
 
   &-header-title {
