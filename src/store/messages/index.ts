@@ -16,6 +16,7 @@ export class MessagesStore {
   isCreating: boolean = false;
   isFetching: boolean = false;
   messages: { [key: string]: MessageType[] } = {};
+  newMessageCount: { [key: string]: number } = {};
   isTyping: { [key: string]: boolean[] } = {};
 
   messageForm: { body: TextInput } = { body: new TextInput('') };
@@ -42,7 +43,9 @@ export class MessagesStore {
             this.isTyping[payload.chatId] = payload.value;
             break;
           case WS_ACTIONS.MESSAGE:
-            this.messages[payload.chatId].push(payload);
+            this.messages[payload.chatId].push({ ...payload });
+            this.newMessageCount[payload.chatId] =
+              (this.newMessageCount[payload.chatId] || 0) + 1;
             break;
           case WS_ACTIONS.LIKE:
             const item = this.messages[payload.chatId].find(
@@ -105,5 +108,9 @@ export class MessagesStore {
         })
       )
       .finally(action(() => (this.isCreating = false)));
+  }
+
+  markRead(chatId: string) {
+    this.newMessageCount[chatId] = 0;
   }
 }

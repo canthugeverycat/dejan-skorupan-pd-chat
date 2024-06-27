@@ -72,4 +72,26 @@
       background-color: $white;
     }
   }
+
+  &-list-item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: gutter();
+  }
+
+  &-list-item-name {
+    margin: 0;
+    padding: 0;
+  }
+
+  &-list-item-last-message {
+    margin: 0;
+    border-radius: $border-radius-large;
+    background: $green;
+    padding: gutter();
+    text-transform: uppercase;
+    white-space: nowrap;
+    @include typography(8px, $white, 700);
+  }
 }
