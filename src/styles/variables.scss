@@ -6,41 +6,22 @@ $jet-black: black;
 $grey: #6e6e6e;
 $light-grey: #b4b4b4;
 $white: #fff;
-
-$yellow: #ffcf40;
-$orange: #f59c4d;
-$gold: #d2c5a3;
-$gold2: #583b1a;
-$gold3: #9d763f;
-
-$red: #862b1d;
-$dark-brown: #3a2718;
-
-// New
 $blue: #b0cfff;
-$light-blue: #c9dcf9;
 $pink: #ffb0d9;
-$light-pink: #f9c9e2;
 $green: #6cdb9c;
-$mustard: #ffc100;
 
 /**
  * Theme
  */
 $primary-color: $pink;
 $secondary-color: $blue;
-$tertiary-color: $mustard;
-$text-color: $grey;
 $background-default: $white;
 $background-body: $secondary-color;
-$icon-color-inactive: $secondary-color;
-$icon-color-active: $primary-color;
 
 /**
  * Borders
  */
 $border-default: 1px solid $light-grey;
-$border-darker: 1px solid $grey;
 
 $border-radius-default: 4px;
 $border-radius-small: 2px;

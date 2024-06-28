@@ -1,3 +1,7 @@
+/**
+ * Global TS entities
+ */
+
 export type ContactType = {
   id: string;
   name: string;

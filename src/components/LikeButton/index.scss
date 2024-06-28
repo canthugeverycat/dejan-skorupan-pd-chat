@@ -5,25 +5,33 @@ $icon-size: $button-size * 0.7;
 
 .like-button {
   display: flex;
+
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
+
   opacity: 0.3;
+
   cursor: pointer;
+
   border-radius: 50%;
   background: $light-grey;
+
   width: $button-size;
   height: $button-size;
+
   color: $white;
 
   svg {
     transform: translateY(3%);
+
     width: $icon-size;
     height: $icon-size;
   }
 
   &:hover {
     transform: scale(1.1);
+
     opacity: 1;
   }
 
@@ -33,10 +41,12 @@ $icon-size: $button-size * 0.7;
     animation: pulse-primary 2s infinite;
 
     background: lighten($primary-color, 10%);
+
     color: $primary-color;
 
     svg {
       animation: bounce-in 1.2s forwards;
+
       background: transparent;
     }
   }

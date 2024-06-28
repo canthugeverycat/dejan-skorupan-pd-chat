@@ -1,8 +1,7 @@
+import { useState } from 'react';
 import { TiMessageTyping } from 'react-icons/ti';
 
 import './index.scss';
-
-import { useState } from 'react';
 
 type LogoProps = {
   href?: string;
@@ -10,7 +9,8 @@ type LogoProps = {
 };
 
 /**
- * A simple Logo component
+ * A simple Logo component with an easter egg
+ * when clicked too many times
  *
  * @param {string} href Url to lead to when clicked
  */

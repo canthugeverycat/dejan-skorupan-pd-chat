@@ -10,24 +10,31 @@ import { CustomSelect } from '../forms/CustomSelect';
 import { TextInput } from '../forms/TextInput';
 
 /**
- * A store for the user profile
+ * A store for the user profile & contacts
  */
 export class UserStore {
   isLoadingProfile: boolean = false;
-  isFetching: boolean = false;
-  contacts: ContactType[] = [];
-  profile: UserProfileType | null = null;
-  profileForm: { name: TextInput; avatar: CustomSelect } = {
-    name: new TextInput(''),
-    avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1),
-  };
+  isFetchingContacts: boolean = false;
+
+  contacts: ContactType[] = []; // List of contacts
+  profile: UserProfileType | null = null; // User profile
 
   existingProfileId: string = localStorage.getItem('pd-chat-user') || '';
+
+  // New user profile form
+  profileForm: { name: TextInput; avatar: CustomSelect } = {
+    name: new TextInput(''),
+    // Preselect a random avatar
+    avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1),
+  };
 
   constructor() {
     makeAutoObservable(this);
   }
 
+  /**
+   * Create a new user profile
+   */
   createProfile(): Promise<void> {
     this.isLoadingProfile = true;
 
@@ -47,6 +54,9 @@ export class UserStore {
       .finally(action(() => (this.isLoadingProfile = false)));
   }
 
+  /**
+   * Fetch an existing user profile
+   */
   loadProfile(): Promise<void> {
     this.isLoadingProfile = true;
 
@@ -55,7 +65,8 @@ export class UserStore {
         action((data) => {
           if (!data) {
             this.clearProfile();
-            throw new Error('Profile not found!');
+
+            console.error('Profile not found! Clearing the data...');
           }
 
           this.profile = data;
@@ -66,8 +77,13 @@ export class UserStore {
       .finally(action(() => (this.isLoadingProfile = false)));
   }
 
+  /**
+   * Fetch a list of contact for the profile
+   *
+   * @param {string} profileId Current profile ID
+   */
   loadContacts(profileId: string): Promise<void> {
-    this.isFetching = true;
+    this.isFetchingContacts = true;
 
     return apiFetchContacts(profileId)
       .then(
@@ -75,9 +91,12 @@ export class UserStore {
           this.contacts = data;
         })
       )
-      .finally(action(() => (this.isFetching = false)));
+      .finally(action(() => (this.isFetchingContacts = false)));
   }
 
+  /**
+   * Delete existing user profile from store and localStorage
+   */
   clearProfile() {
     this.profile = null;
     this.existingProfileId = '';

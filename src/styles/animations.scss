@@ -1,5 +1,9 @@
 @import './variables.scss';
 
+/**
+ * Custom Animations
+ */
+
 @keyframes fly-out-diagonal {
   from {
     transform: translate(0, 0) scale(1);

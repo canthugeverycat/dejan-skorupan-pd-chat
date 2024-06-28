@@ -3,22 +3,29 @@
 
 .controls {
   display: flex;
+
   flex-shrink: 0;
   align-items: center;
+
   margin-top: auto;
+
   border: 4px solid $primary-color;
   border-radius: $border-radius-large;
   background: $white;
+
   padding-right: gutter(1);
   padding-left: gutter(4);
 
   input {
     flex: 1;
+
     border: none;
-    background: transparent;
-    padding: gutter(2) gutter(4) gutter(2) 0;
-    @include typography(14px, $black, 500);
     border-radius: $border-radius-large;
+    background: transparent;
+
+    padding: gutter(2) gutter(4) gutter(2) 0;
+
+    @include typography(14px, $black, 500);
 
     &:focus {
       outline: none;

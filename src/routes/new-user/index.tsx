@@ -1,19 +1,17 @@
 import { observer } from 'mobx-react-lite';
-import { FaCloudversify, FaRegPaperPlane } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 import AvatarPicker from '../../components/AvatarPicker';
 import Button from '../../components/Button';
 import Logo from '../../components/Logo';
+import { SOUNDS } from '../../globals/const';
+import { playSoundEffect } from '../../globals/playSoundEffect';
 import { useStore } from '../../hooks/use-store';
 
 import './index.scss';
 
-import { SOUNDS } from '../../globals/const';
-import { playSoundEffect } from '../../globals/playSoundEffect';
-
 /**
- * NewUser route
+ * New User Page
  */
 const NewUser = () => {
   const navigate = useNavigate();
@@ -22,8 +20,11 @@ const NewUser = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Play the whooshing sound for the paper plane animation
     playSoundEffect(SOUNDS.CREATE_PROFILE);
-    userStore.createProfile().then((res) => {
+
+    // Create the profile and redicer the user to home
+    userStore.createProfile().then(() => {
       navigate('/');
     });
   };
@@ -31,8 +32,10 @@ const NewUser = () => {
   return (
     <section className="new-user" aria-label="New User">
       <Logo />
+
       <h1 className="new-user-title">Be you. Chat cool.</h1>
 
+      {/* New User Form */}
       <form onSubmit={handleSubmit}>
         <label>
           Choose your display name
@@ -42,11 +45,13 @@ const NewUser = () => {
             autoFocus
           />
         </label>
+
         <AvatarPicker />
+
         <Button
           type="submit"
           disabled={!userStore.profileForm.name.value.length}
-          isLoading={userStore.isLoadingProfile || userStore.isFetching}
+          isLoading={userStore.isLoadingProfile || userStore.isFetchingContacts}
         >
           Start chatting
         </Button>

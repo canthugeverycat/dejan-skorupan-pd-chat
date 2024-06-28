@@ -2,16 +2,21 @@
 @import '../../styles/animations.scss';
 
 $avatar-size: 40px;
+$avatar-size-small: 30px;
 
 .avatar {
   display: inline-block;
+
   cursor: pointer;
+
   border: 2px solid $primary-color;
   border-radius: 50%;
+
   background: url('../../assets/avatars.jpg');
   background-size: 800%;
   background-repeat: no-repeat;
   background-color: $secondary-color;
+
   width: $avatar-size;
   height: $avatar-size;
 
@@ -28,4 +33,9 @@ $avatar-size: 40px;
   &--selected {
     outline: 4px solid $primary-color;
   }
+}
+
+.avatar--small {
+  width: $avatar-size-small;
+  height: $avatar-size-small;
 }

@@ -3,6 +3,9 @@ import MessageList from '../../components/MessageList';
 
 import './index.scss';
 
+/**
+ * Chat Page
+ */
 const Chat = () => {
   return (
     <section className="chat">

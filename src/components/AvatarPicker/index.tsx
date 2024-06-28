@@ -5,6 +5,9 @@ import Avatar from '../Avatar';
 
 import './index.scss';
 
+/**
+ * A component that allows for selecting avatar
+ */
 const AvatarPicker = () => {
   const {
     userStore: {

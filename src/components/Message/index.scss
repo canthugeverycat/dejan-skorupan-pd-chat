@@ -3,15 +3,20 @@
 
 .message {
   display: flex;
+
   align-items: center;
   gap: gutter();
+
   max-width: 80%;
 
   &-content {
     position: relative;
+
     border: 1px solid;
     border-radius: $border-radius-xl;
+
     padding: 0 gutter(6);
+
     text-align: left;
   }
 
@@ -23,6 +28,7 @@
 
   &-content-time {
     position: absolute;
+
     right: gutter(5);
     bottom: gutter(0.5);
 
@@ -31,6 +37,7 @@
 
   &--user {
     margin-left: auto;
+
     .message-content {
       border-color: darken($secondary-color, 5%);
       background: $secondary-color;
@@ -38,6 +45,7 @@
 
     .like-button {
       opacity: 0;
+
       pointer-events: none;
     }
 
@@ -48,8 +56,10 @@
 
   &--contact {
     margin-right: auto;
+
     .message-content {
       order: 1;
+
       border-color: darken($white, 10%);
       background: $white;
     }

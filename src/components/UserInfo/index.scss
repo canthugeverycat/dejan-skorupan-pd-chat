@@ -4,23 +4,23 @@
 
 .user-info {
   display: flex;
-  align-items: center;
-  gap: gutter();
 
-  &-avatar {
-    width: 40px;
-    height: 40px;
-  }
+  align-items: center;
+
+  gap: gutter();
 
   &-content {
     display: flex;
+
     flex-direction: column;
     align-items: flex-start;
   }
   &-status {
     display: flex;
+
     align-items: center;
     gap: gutter(0.5);
+
     text-transform: uppercase;
 
     svg {
@@ -49,15 +49,14 @@
 }
 
 .user-info--user {
-  .user-info-avatar {
+  .avatar {
     order: 2;
-    width: 30px;
-    height: 30px;
   }
 
   .user-info-content {
     align-items: flex-end;
     order: 1;
+
     @include typography(12px, $black, 500);
   }
 

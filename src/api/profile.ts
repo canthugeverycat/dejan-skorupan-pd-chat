@@ -6,6 +6,7 @@ import { API_BASE_URL } from '../globals/const';
  * Create a new profile for the user
  *
  * @param {string} name Display name for the user profile
+ * @param {number} avatar Avatar for the user profile
  *
  * @returns {UserProfileType}
  */

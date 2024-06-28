@@ -13,7 +13,6 @@ $border-size: $button-size / 5;
   cursor: pointer;
 
   border: $border-size solid darken($primary-color, 10%);
-
   border-radius: $border-radius-small $border-radius-small $border-radius-small
     0;
   background: $primary-color;
@@ -23,14 +22,15 @@ $border-size: $button-size / 5;
 
   &:before {
     position: absolute;
+
     right: 100%;
     bottom: $button-size / -5;
+
     z-index: 0;
 
     border: $border-size solid darken($primary-color, 10%);
     border-right: none;
     border-radius: $border-radius-small 0 0 $border-radius-small;
-
     background: $primary-color;
 
     width: $button-size * 0.7;
@@ -41,13 +41,13 @@ $border-size: $button-size / 5;
 
   &-symbol:after {
     position: absolute;
+
     bottom: $button-size * -0.1;
     left: $button-size * -0.4;
 
     content: '↵';
 
     color: $grey;
-
     font-size: $button-size;
   }
 
@@ -61,6 +61,7 @@ $border-size: $button-size / 5;
 
   &:disabled {
     opacity: 0.3;
+
     border-color: darken($light-grey, 10%);
     background: $light-grey;
 

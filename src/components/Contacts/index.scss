@@ -3,70 +3,66 @@
 
 .contacts {
   display: flex;
+
   flex-shrink: 0;
   flex-direction: column;
+
   box-shadow: $box-shadow-default;
+
   width: 200px;
+
   overflow: hidden;
   user-select: none;
 
   &-header {
     display: flex;
+
     align-items: center;
     gap: gutter(2);
+
     box-sizing: border-box;
     box-shadow: $box-shadow-vertical;
+
     background: $white;
+
     padding: gutter(1) gutter(2);
     height: 60px;
   }
 
   &-header-title {
     @include typography(18px, $black, 700, 'Mulish');
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  &-header-status {
-    @include typography(8px, $grey, 700);
-    display: flex;
-    align-items: center;
-    gap: gutter();
-    text-transform: uppercase;
-  }
-
-  &-header-status-circle {
-    display: inline-block;
-    border-radius: 50%;
-    background: $green;
-    width: 10px;
-    height: 10px;
   }
 
   &-list {
     display: flex;
+
     flex-direction: column;
+
     margin: 0;
     padding-left: 0;
+
     overflow: scroll;
     list-style: none;
   }
 
   &-list-item a {
     display: flex;
+
     align-items: center;
     gap: gutter(2);
+
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
     padding: gutter(2);
+
     text-decoration: none;
     @include typography(14px, $grey, 600);
   }
 
   &-list-item a.is-active {
     background: $secondary-color;
-    color: $white;
-    font-weight: 700;
+
+    @include typography(14px, $white, 700);
 
     .avatar {
       background-color: $white;
@@ -75,15 +71,19 @@
 
   &-list-item-container {
     display: flex;
+
     flex-direction: column;
     align-items: flex-start;
+
     gap: gutter();
   }
 
   &-list-item-name {
     display: flex;
+
     align-items: center;
     gap: gutter();
+
     margin: 0;
     padding: 0;
 
@@ -92,11 +92,14 @@
     }
   }
 
-  &-list-item-last-message {
+  &-list-item-new-messages {
     margin: 0;
+
     border-radius: $border-radius-large;
     background: $green;
+
     padding: gutter();
+
     text-transform: uppercase;
     white-space: nowrap;
     @include typography(8px, $white, 700);

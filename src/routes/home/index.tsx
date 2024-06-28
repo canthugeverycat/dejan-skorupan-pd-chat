@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FaRegPaperPlane } from 'react-icons/fa';
 import { Outlet, useParams } from 'react-router-dom';
 
@@ -17,10 +18,17 @@ const Home = () => {
       <Contacts />
 
       <div className="home-content">
-        <div className={`home-header ${!id ? 'home-header--right' : ''}`}>
+        {/* Header */}
+        <div
+          className={classNames('home-header', {
+            'home-header--right': !id,
+          })}
+        >
           <UserInfo type="contact" />
           <UserInfo type="user" />
         </div>
+
+        {/* Content */}
         <div className="home-main">
           {!id && (
             <h2 className="home-main-title">

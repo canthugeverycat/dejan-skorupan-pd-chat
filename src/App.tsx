@@ -16,20 +16,22 @@ const App = () => {
   const { userStore, messagesStore } = useStore();
 
   useEffect(() => {
+    // If it's a new user
     if (!userStore.existingProfileId) {
       navigate('/new-user');
     } else {
-      userStore.loadProfile().catch(() => {
+      // If old user, load their profile
+      userStore.loadProfile().then(() => {
         navigate('/new-user');
       });
     }
   }, []);
 
   useEffect(() => {
-    if (userStore.contacts.length) {
+    if (userStore.profile) {
       messagesStore.connectWebSocket();
     }
-  }, [userStore.contacts.length]);
+  }, [userStore.profile]);
 
   return (
     <div className="container">

@@ -6,6 +6,8 @@ type SendButtonProps = {
 
 /**
  * A component which displays a CSS icon of the physical Enter key
+ *
+ * @param {boolean} disabled Whether the button is disabled
  */
 const SendButton = ({ disabled }: SendButtonProps) => {
   return (

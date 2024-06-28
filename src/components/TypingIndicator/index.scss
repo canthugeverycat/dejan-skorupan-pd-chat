@@ -4,21 +4,27 @@
 
 .typing-indicator {
   display: flex;
+
   align-items: center;
   gap: gutter();
+
   margin-right: auto;
   margin-left: auto;
+
   @include typography(12px, $light-grey);
 
   &-dots {
     display: flex;
+
     gap: gutter();
 
     span {
       animation: bounce-in 1.2s ease infinite;
       animation-delay: 1.2s;
+
       border-radius: 50%;
       background: $secondary-color;
+
       width: 4px;
       height: 4px;
 

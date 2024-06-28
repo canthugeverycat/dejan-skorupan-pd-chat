@@ -1,26 +1,38 @@
+import classNames from 'classnames';
 import { observer } from 'mobx-react-lite';
-
-import './index.scss';
 
 import { getHumanReadableTime } from '../../globals/functions';
 import { MessageType } from '../../globals/types';
 import { useStore } from '../../hooks/use-store';
 import LikeButton from '../LikeButton';
 
-const Messages = (message: MessageType) => {
+import './index.scss';
+
+/**
+ * A message component
+ *
+ * @param {MessageType} message The message object
+ */
+const Message = (message: MessageType) => {
   const { id, body, sender, createdAt, liked } = message;
   const { messagesStore } = useStore();
 
-  const senderClass = sender ? 'message--user' : 'message--contact';
-
   return (
-    <div className={`message ${senderClass}`} key={id}>
+    <div
+      className={classNames('message', {
+        'message--user': sender,
+        'message--contact': !sender,
+      })}
+    >
       <LikeButton
         {...{ liked }}
         onClick={() => messagesStore.toggleLikeMessage(message)}
       />
       <div className="message-content">
+        {/* Body */}
         <p className="message-content-body">{body}</p>
+
+        {/* Time */}
         <span className="message-content-time">
           {getHumanReadableTime(createdAt)}
         </span>
@@ -29,4 +41,4 @@ const Messages = (message: MessageType) => {
   );
 };
 
-export default observer(Messages);
+export default observer(Message);

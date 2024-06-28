@@ -2,11 +2,13 @@ import { observer } from 'mobx-react-lite';
 import { useParams } from 'react-router-dom';
 
 import { useStore } from '../../hooks/use-store';
+import SendButton from '../SendButton';
 
 import './index.scss';
 
-import SendButton from '../SendButton';
-
+/**
+ * Input for sending a new message
+ */
 const Controls = () => {
   const { id } = useParams();
   const { messagesStore } = useStore();

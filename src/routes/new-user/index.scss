@@ -4,10 +4,14 @@
 
 .new-user {
   display: flex;
+
   flex-direction: column;
   align-items: center;
+
   padding: gutter(4);
+
   min-width: 300px;
+
   user-select: none;
 
   &-title {
@@ -16,20 +20,25 @@
 
   form {
     display: flex;
+
     flex-direction: column;
     gap: gutter(2);
 
     label {
       display: flex;
+
       flex-direction: column;
       gap: gutter(2);
+
       @include typography(14px);
     }
 
     input {
       border: none;
       background: $secondary-color;
+
       padding: gutter(2);
+
       text-align: center;
       text-shadow: $text-shadow-default;
 

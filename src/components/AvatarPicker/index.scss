@@ -3,17 +3,23 @@
 
 .avatar-picker {
   background: rgba(0, 0, 0, 0.1);
+
   padding: gutter(4);
+
   @include typography(14px);
 
   .avatar-picker-container {
     display: flex;
+
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+
     gap: gutter();
     margin-top: gutter(2);
+
     background: transparent;
+
     width: 380px;
   }
 }
