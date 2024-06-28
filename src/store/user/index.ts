@@ -65,8 +65,7 @@ export class UserStore {
         action((data) => {
           if (!data) {
             this.clearProfile();
-
-            console.error('Profile not found! Clearing the data...');
+            throw new Error('Profile not found!');
           }
 
           this.profile = data;

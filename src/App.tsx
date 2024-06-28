@@ -21,7 +21,7 @@ const App = () => {
       navigate('/new-user');
     } else {
       // If old user, load their profile
-      userStore.loadProfile().then(() => {
+      userStore.loadProfile().catch(() => {
         navigate('/new-user');
       });
     }
