@@ -2,16 +2,20 @@ import './index.scss';
 
 type TypingIndicatorProps = {
   name?: string;
+  showText?: boolean;
 };
 
-const TypingIndicator = ({ name = 'User' }: TypingIndicatorProps) => (
+const TypingIndicator = ({
+  name = 'User',
+  showText = true,
+}: TypingIndicatorProps) => (
   <div className="typing-indicator">
     <div className="typing-indicator-dots">
       {Array.from({ length: 3 }).map((_, i) => (
         <span key={i}></span>
       ))}
     </div>
-    {name} is typing
+    {showText && <>{name} is typing</>}
   </div>
 );
 

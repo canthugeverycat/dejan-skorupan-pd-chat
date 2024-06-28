@@ -5,7 +5,8 @@ import {
   fetchMessages as apiFetchMessages,
   toggleLikeMessage as apiToggleLikeMessage,
 } from '../../api/messages';
-import { WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
+import { SOUNDS, WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
+import { playSoundEffect } from '../../globals/playSoundEffect';
 import { MessageType } from '../../globals/types';
 import { TextInput } from '../forms/TextInput';
 
@@ -43,11 +44,13 @@ export class MessagesStore {
             this.isTyping[payload.chatId] = payload.value;
             break;
           case WS_ACTIONS.MESSAGE:
+            playSoundEffect(SOUNDS.RECEIVED_MESSAGE);
             this.messages[payload.chatId].push({ ...payload });
             this.newMessageCount[payload.chatId] =
               (this.newMessageCount[payload.chatId] || 0) + 1;
             break;
           case WS_ACTIONS.LIKE:
+            playSoundEffect(SOUNDS.LIKED_MESSAGE);
             const item = this.messages[payload.chatId].find(
               (m) => m.id === payload.id
             );

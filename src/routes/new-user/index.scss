@@ -39,21 +39,5 @@
         outline: none;
       }
     }
-
-    .new-user-icon--wind {
-      position: absolute;
-      transform: translate(-10px, 15px) rotate(120deg);
-      opacity: 0;
-    }
-
-    .button--loading {
-      .new-user-icon--plane {
-        animation: fly-out-diagonal 1.5s linear forwards;
-      }
-
-      .new-user-icon--wind {
-        animation: fade-diagonal 1s linear forwards;
-      }
-    }
   }
 }

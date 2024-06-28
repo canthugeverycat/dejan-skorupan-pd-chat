@@ -1,3 +1,5 @@
+import { FaCloudversify, FaRegPaperPlane } from 'react-icons/fa';
+
 import './index.scss';
 
 type ButtonProps = {
@@ -6,7 +8,6 @@ type ButtonProps = {
   isLoading?: boolean;
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
   type?: 'button' | 'submit' | 'reset';
 };
 
@@ -20,7 +21,6 @@ const Button = ({
   isLoading = false,
   className = '',
   children,
-  onClick,
   type = 'button',
 }: ButtonProps) => {
   const loadingClass = isLoading ? 'button--loading' : '';
@@ -33,6 +33,10 @@ const Button = ({
       className={`${className} ${loadingClass} ${colorClass} button`}
     >
       {children}
+      <div>
+        <FaCloudversify className="button-icon--wind" size={20} />
+        <FaRegPaperPlane className="button-icon--plane" size={14} />
+      </div>
     </button>
   );
 };

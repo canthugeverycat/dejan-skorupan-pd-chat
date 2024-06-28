@@ -31,4 +31,26 @@
       lighten($primary-color, 5%) $primary-color
     );
   }
+
+  &:disabled {
+    opacity: 0.5;
+    border-color: darken($light-grey, 10%);
+    background: $light-grey;
+  }
+
+  &-icon--wind {
+    position: absolute;
+    transform: translate(-10px, 15px) rotate(120deg);
+    opacity: 0;
+  }
+
+  &--loading {
+    .button-icon--plane {
+      animation: fly-out-diagonal 1.5s linear forwards;
+    }
+
+    .button-icon--wind {
+      animation: fade-diagonal 1s linear forwards;
+    }
+  }
 }

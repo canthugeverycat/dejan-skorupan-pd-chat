@@ -3,7 +3,7 @@
 
 .avatar-picker {
   background: rgba(0, 0, 0, 0.1);
-  padding: gutter(4) 0;
+  padding: gutter(4);
   @include typography(14px);
 
   .avatar-picker-container {

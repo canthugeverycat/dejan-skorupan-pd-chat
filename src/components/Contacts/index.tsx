@@ -9,6 +9,8 @@ import './index.scss';
 
 import { useEffect } from 'react';
 
+import TypingIndicator from '../TypingIndicator';
+
 const setActiveClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? 'is-active' : '';
 
@@ -35,13 +37,17 @@ const Contacts = () => {
         {contacts.map((contact) => {
           const chatId = `${profile?.id}-${contact.id}`;
           const newMessages = messagesStore.newMessageCount[chatId];
+          const isTyping = messagesStore.isTyping[chatId];
 
           return (
             <li className="contacts-list-item" key={contact.id}>
               <NavLink className={setActiveClass} to={`/chat/${chatId}`}>
                 <Avatar type={contact.avatar} />
                 <div className="contacts-list-item-container">
-                  <p className="contacts-list-item-name">{contact.name}</p>
+                  <p className="contacts-list-item-name">
+                    {contact.name}
+                    {isTyping && <TypingIndicator showText={false} />}
+                  </p>
                   {!!newMessages && (
                     <p className="contacts-list-item-last-message">
                       {newMessages} new

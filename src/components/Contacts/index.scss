@@ -81,8 +81,15 @@
   }
 
   &-list-item-name {
+    display: flex;
+    align-items: center;
+    gap: gutter();
     margin: 0;
     padding: 0;
+
+    .typing-indicator {
+      margin-top: gutter();
+    }
   }
 
   &-list-item-last-message {

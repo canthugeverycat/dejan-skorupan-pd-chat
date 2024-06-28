@@ -9,6 +9,9 @@ import { useStore } from '../../hooks/use-store';
 
 import './index.scss';
 
+import { SOUNDS } from '../../globals/const';
+import { playSoundEffect } from '../../globals/playSoundEffect';
+
 /**
  * NewUser route
  */
@@ -19,6 +22,7 @@ const NewUser = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    playSoundEffect(SOUNDS.CREATE_PROFILE);
     userStore.createProfile().then((res) => {
       navigate('/');
     });
@@ -41,13 +45,10 @@ const NewUser = () => {
         <AvatarPicker />
         <Button
           type="submit"
+          disabled={!userStore.profileForm.name.value.length}
           isLoading={userStore.isLoadingProfile || userStore.isFetching}
         >
           Start chatting
-          <div>
-            <FaCloudversify className="new-user-icon--wind" size={20} />
-            <FaRegPaperPlane className="new-user-icon--plane" size={14} />
-          </div>
         </Button>
       </form>
     </section>

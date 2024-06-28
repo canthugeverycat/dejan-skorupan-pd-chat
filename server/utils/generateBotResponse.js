@@ -1,7 +1,7 @@
 const { faker } = require('@faker-js/faker');
 
 // Chance the bot will like received message
-const LIKE_PROBABILITY = 0.3;
+const LIKE_PROBABILITY = 0.4;
 
 // Time it will take the user to like
 const LIKE_TIME_MIN = 500;

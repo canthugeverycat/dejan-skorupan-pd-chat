@@ -24,8 +24,6 @@ const UserInfo = ({ type }: UserInfoProps) => {
   const person =
     type === 'user' ? profile : contacts.find((c) => c.id === contactId);
 
-  console.log(person);
-
   if (!person) {
     return null;
   }

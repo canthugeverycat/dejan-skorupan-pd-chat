@@ -19,7 +19,7 @@ export class UserStore {
   profile: UserProfileType | null = null;
   profileForm: { name: TextInput; avatar: CustomSelect } = {
     name: new TextInput(''),
-    avatar: new CustomSelect(),
+    avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1),
   };
 
   existingProfileId: string = localStorage.getItem('pd-chat-user') || '';

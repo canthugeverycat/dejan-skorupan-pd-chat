@@ -2,6 +2,9 @@ import { IoIosHeart } from 'react-icons/io';
 
 import './index.scss';
 
+import { SOUNDS } from '../../globals/const';
+import { playSoundEffect } from '../../globals/playSoundEffect';
+
 type LikeButtonProps = {
   liked: boolean;
   onClick: () => void;
@@ -10,8 +13,13 @@ type LikeButtonProps = {
 const LikeButton = ({ liked, onClick }: LikeButtonProps) => {
   const likedClass = liked ? 'like-button--liked' : '';
 
+  const handleClick = () => {
+    if (!liked) playSoundEffect(SOUNDS.LIKED_MESSAGE);
+    onClick();
+  };
+
   return (
-    <span className={`like-button ${likedClass}`} {...{ onClick }}>
+    <span className={`like-button ${likedClass}`} onClick={handleClick}>
       <IoIosHeart />
     </span>
   );
