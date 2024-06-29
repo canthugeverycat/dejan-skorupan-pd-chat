@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { API_BASE_URL } from '../globals/const';
+import { http } from './http';
 
 /**
  * Create a new profile for the user
@@ -17,12 +16,14 @@ export const createProfile = async ({
   name: string;
   avatar: number;
 }) => {
-  const response = await axios.post(`${API_BASE_URL}/profiles`, {
-    name,
-    avatar,
-  });
+  try {
+    const data = await http.post(`${API_BASE_URL}/profiles`, { name, avatar });
 
-  return response.data;
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };
 
 /**
@@ -33,7 +34,12 @@ export const createProfile = async ({
  * @returns {UserProfileType}
  */
 export const fetchProfile = async (profileId: string) => {
-  const response = await axios.get(`${API_BASE_URL}/profiles/${profileId}`);
+  try {
+    const data = await http.get(`${API_BASE_URL}/profiles/${profileId}`);
 
-  return response.data;
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };

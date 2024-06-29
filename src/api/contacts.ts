@@ -1,6 +1,5 @@
-import axios from 'axios';
-
 import { API_BASE_URL } from '../globals/const';
+import { http } from './http';
 
 /**
  * Fetches all the contacts for the current profile
@@ -10,9 +9,14 @@ import { API_BASE_URL } from '../globals/const';
  * @returns {ContactType[]}
  */
 export const fetchContacts = async (profileId: string) => {
-  const response = await axios.get(
-    `${API_BASE_URL}/profiles/${profileId}/contacts`
-  );
+  try {
+    const data = await http.get(
+      `${API_BASE_URL}/profiles/${profileId}/contacts`
+    );
 
-  return response.data;
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };

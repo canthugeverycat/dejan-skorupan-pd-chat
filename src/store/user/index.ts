@@ -17,6 +17,8 @@ export class UserStore {
   isFetchingContacts: boolean = false;
 
   contacts: ContactType[] = []; // List of contacts
+  contactsSearchString: TextInput = new TextInput('');
+
   profile: UserProfileType | null = null; // User profile
 
   existingProfileId: string = localStorage.getItem('pd-chat-user') || '';
@@ -30,6 +32,15 @@ export class UserStore {
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  // Contacts with applied search
+  get filtered(): ContactType[] {
+    return this.contacts.filter((contact) =>
+      contact.name
+        .toLowerCase()
+        .includes(this.contactsSearchString.value.toLowerCase())
+    );
   }
 
   /**

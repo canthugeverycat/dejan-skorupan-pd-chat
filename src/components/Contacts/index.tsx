@@ -9,6 +9,8 @@ import TypingIndicator from '../TypingIndicator';
 
 import './index.scss';
 
+import SearchInput from '../SearchInput';
+
 const setActiveClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? 'is-active' : '';
 
@@ -19,7 +21,7 @@ const Contacts = () => {
   const { id } = useParams();
 
   const {
-    userStore: { contacts, profile },
+    userStore: { filtered, profile },
     messagesStore,
   } = useStore();
 
@@ -36,9 +38,11 @@ const Contacts = () => {
         <h2 className="contacts-header-title">Chats</h2>
       </div>
 
+      <SearchInput />
+
       {/* List */}
       <ul className="contacts-list">
-        {contacts.map((contact) => {
+        {filtered.map((contact) => {
           const chatId = `${profile?.id}-${contact.id}`;
           const newMessages = messagesStore.newMessageCount[chatId];
           const isTyping = messagesStore.isTyping[chatId];
@@ -50,10 +54,10 @@ const Contacts = () => {
                 <Avatar type={contact.avatar} />
                 <div className="contacts-list-item-container">
                   {/* Name & Typing indicator */}
-                  <p className="contacts-list-item-name">
+                  <div className="contacts-list-item-name">
                     {contact.name}
                     {isTyping && <TypingIndicator showText={false} />}
-                  </p>
+                  </div>
                   {/* New messages indicator */}
                   {!!newMessages && (
                     <p className="contacts-list-item-new-messages">

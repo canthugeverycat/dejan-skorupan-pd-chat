@@ -1,7 +1,6 @@
-import axios from 'axios';
-
 import { API_BASE_URL } from '../globals/const';
 import { MessageType } from '../globals/types';
+import { http } from './http';
 
 /**
  * Fetches all the messages for the current chat
@@ -11,9 +10,14 @@ import { MessageType } from '../globals/types';
  * @returns {MessageType[]}
  */
 export const fetchMessages = async (chatId: string) => {
-  const response = await axios.get(`${API_BASE_URL}/chats/${chatId}/messages`);
+  try {
+    const data = await http.get(`${API_BASE_URL}/chats/${chatId}/messages`);
 
-  return response.data;
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };
 
 /**
@@ -31,16 +35,18 @@ export const createMessage = async ({
   body: string;
   chatId: string;
 }) => {
-  const response = await axios.post(
-    `${API_BASE_URL}/chats/${chatId}/messages`,
-    {
+  try {
+    const data = await http.post(`${API_BASE_URL}/chats/${chatId}/messages`, {
       body,
       chatId,
       sender: 1,
-    }
-  );
+    });
 
-  return response.data;
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };
 
 /**
@@ -51,13 +57,17 @@ export const createMessage = async ({
  * @returns {MessageType}
  */
 export const toggleLikeMessage = async (message: MessageType) => {
-  const { chatId, id, liked } = message;
-  const response = await axios.put(
-    `${API_BASE_URL}/chats/${chatId}/messages/${id}`,
-    {
-      liked: !liked,
-    }
-  );
+  try {
+    const { chatId, id, liked } = message;
 
-  return response.data;
+    const data = await http.put(
+      `${API_BASE_URL}/chats/${chatId}/messages/${id}`,
+      { liked: !liked }
+    );
+
+    return data;
+  } catch (e) {
+    const message = e instanceof Error ? e.message : 'An error has occured!';
+    throw new Error(message);
+  }
 };
