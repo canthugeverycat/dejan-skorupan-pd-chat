@@ -20,3 +20,7 @@ export const fetchContacts = async (profileId: string) => {
     throw new Error(message);
   }
 };
+
+export default {
+  fetchContacts,
+};

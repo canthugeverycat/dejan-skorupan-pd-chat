@@ -1,10 +1,6 @@
 import { action, makeAutoObservable, runInAction } from 'mobx';
 
-import {
-  createMessage as apiCreateMessage,
-  fetchMessages as apiFetchMessages,
-  toggleLikeMessage as apiToggleLikeMessage,
-} from '../../api/messages';
+import MessagesApi from '../../api/messages';
 import { SOUNDS, WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
 import { playSoundEffect } from '../../globals/playSoundEffect';
 import { MessageType } from '../../globals/types';
@@ -24,7 +20,7 @@ export class MessagesStore {
 
   ws: WebSocket | null = null;
 
-  constructor() {
+  constructor(private messagesApi: typeof MessagesApi) {
     makeAutoObservable(this);
   }
 
@@ -47,7 +43,11 @@ export class MessagesStore {
           // On receiving a new Message
           case WS_ACTIONS.MESSAGE:
             playSoundEffect(SOUNDS.RECEIVED_MESSAGE);
+
+            this.messages[payload.chatId] = this.messages[payload.chatId] || [];
+
             this.messages[payload.chatId].push({ ...payload });
+
             this.newMessageCount[payload.chatId] =
               (this.newMessageCount[payload.chatId] || 0) + 1;
             break;
@@ -84,7 +84,8 @@ export class MessagesStore {
   createMessage(chatId: string): Promise<void> {
     this.isCreating = true;
 
-    return apiCreateMessage({ chatId, body: this.messageForm.body.value })
+    return this.messagesApi
+      .createMessage({ chatId, body: this.messageForm.body.value })
       .then(
         action((data) => {
           this.messageForm.body.setValue('');
@@ -102,7 +103,8 @@ export class MessagesStore {
   loadMessages(chatId: string): Promise<void> {
     this.isFetching = true;
 
-    return apiFetchMessages(chatId)
+    return this.messagesApi
+      .fetchMessages(chatId)
       .then(
         action((data) => {
           this.messages[chatId] = data;
@@ -119,7 +121,8 @@ export class MessagesStore {
   toggleLikeMessage(message: MessageType): Promise<void> {
     const { chatId, id } = message;
 
-    return apiToggleLikeMessage(message)
+    return this.messagesApi
+      .toggleLikeMessage(message)
       .then(
         action((data) => {
           const item = this.messages[chatId].find((m) => m.id === id);

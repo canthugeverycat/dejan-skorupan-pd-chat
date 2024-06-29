@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
 
+import { contactsApi, messagesApi, profileApi } from '../../globals/mocks';
 import { MessageType } from '../../globals/types';
 import { useStore } from '../../hooks/use-store';
 import { MessagesStore } from '../../store/messages';
@@ -40,8 +41,8 @@ const mockMessages: {
   ],
 };
 
-const mockUserStore = new UserStore();
-const mockMessagesStore = new MessagesStore();
+const mockUserStore = new UserStore(profileApi, contactsApi);
+const mockMessagesStore = new MessagesStore(messagesApi);
 
 describe('MessageList Component', () => {
   beforeEach(() => {

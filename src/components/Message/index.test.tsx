@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { playSoundEffect } from '../../globals/playSoundEffect';
+import { contactsApi, messagesApi, profileApi } from '../../globals/mocks';
 import { MessageType } from '../../globals/types';
 import { useStore } from '../../hooks/use-store';
 import { MessagesStore } from '../../store/messages';
@@ -26,8 +26,8 @@ const mockMessage: MessageType = {
   liked: false,
 };
 
-const mockUserStore = new UserStore();
-const mockMessagesStore = new MessagesStore();
+const mockUserStore = new UserStore(profileApi, contactsApi);
+const mockMessagesStore = new MessagesStore(messagesApi);
 
 describe('Message Component', () => {
   beforeEach(() => {

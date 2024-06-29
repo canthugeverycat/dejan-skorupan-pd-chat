@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, useParams } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
+import { contactsApi, messagesApi, profileApi } from '../../globals/mocks';
 import { useStore } from '../../hooks/use-store';
 import { MessagesStore } from '../../store/messages';
 import { UserStore } from '../../store/user';
@@ -12,8 +13,8 @@ jest.mock('../../hooks/use-store', () => ({
   useStore: jest.fn(),
 }));
 
-const mockUserStore = new UserStore();
-const mockMessagesStore = new MessagesStore();
+const mockUserStore = new UserStore(profileApi, contactsApi);
+const mockMessagesStore = new MessagesStore(messagesApi);
 
 describe('Contacts Component', () => {
   beforeEach(() => {

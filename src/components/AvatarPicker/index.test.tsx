@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
+import { contactsApi, profileApi } from '../../globals/mocks';
 import { useStore } from '../../hooks/use-store';
 import { UserStore } from '../../store/user';
 import AvatarPicker from './index';
@@ -10,7 +11,7 @@ jest.mock('../../hooks/use-store', () => ({
   useStore: jest.fn(),
 }));
 
-const mockUserStore = new UserStore();
+const mockUserStore = new UserStore(profileApi, contactsApi);
 
 describe('AvatarPicker Component', () => {
   beforeEach(() => {

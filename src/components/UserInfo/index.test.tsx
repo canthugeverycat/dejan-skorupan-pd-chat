@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
 
+import { contactsApi, profileApi } from '../../globals/mocks';
 import { useStore } from '../../hooks/use-store';
 import { UserStore } from '../../store/user';
 import UserInfo from './index';
@@ -15,7 +16,7 @@ jest.mock('../../hooks/use-store', () => ({
   useStore: jest.fn(),
 }));
 
-const mockUserStore = new UserStore();
+const mockUserStore = new UserStore(profileApi, contactsApi);
 
 describe('UserInfo Component', () => {
   beforeEach(() => {

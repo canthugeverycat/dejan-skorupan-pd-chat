@@ -71,3 +71,9 @@ export const toggleLikeMessage = async (message: MessageType) => {
     throw new Error(message);
   }
 };
+
+export default {
+  fetchMessages,
+  createMessage,
+  toggleLikeMessage,
+};

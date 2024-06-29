@@ -43,3 +43,8 @@ export const fetchProfile = async (profileId: string) => {
     throw new Error(message);
   }
 };
+
+export default {
+  createProfile,
+  fetchProfile,
+};

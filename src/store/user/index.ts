@@ -1,10 +1,7 @@
 import { action, makeAutoObservable } from 'mobx';
 
-import { fetchContacts as apiFetchContacts } from '../../api/contacts';
-import {
-  createProfile as apiCreateProfile,
-  fetchProfile as apiFetchProfile,
-} from '../../api/profile';
+import ContactsApi from '../../api/contacts';
+import ProfileApi from '../../api/profile';
 import { ContactType, UserProfileType } from '../../globals/types';
 import { CustomSelect } from '../forms/CustomSelect';
 import { TextInput } from '../forms/TextInput';
@@ -30,7 +27,10 @@ export class UserStore {
     avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1),
   };
 
-  constructor() {
+  constructor(
+    private profileApi: typeof ProfileApi,
+    private contactsApi: typeof ContactsApi
+  ) {
     makeAutoObservable(this);
   }
 
@@ -52,9 +52,10 @@ export class UserStore {
     const name = this.profileForm.name.value;
     const avatar = this.profileForm.avatar.value;
 
-    return apiCreateProfile({ name, avatar })
+    return this.profileApi
+      .createProfile({ name, avatar })
       .then(
-        action((data) => {
+        action((data: UserProfileType) => {
           this.profile = data;
 
           localStorage.setItem('pd-chat-user', data.id);
@@ -71,9 +72,10 @@ export class UserStore {
   loadProfile(): Promise<void> {
     this.isLoadingProfile = true;
 
-    return apiFetchProfile(this.existingProfileId)
+    return this.profileApi
+      .fetchProfile(this.existingProfileId)
       .then(
-        action((data) => {
+        action((data: UserProfileType) => {
           if (!data) {
             this.clearProfile();
             throw new Error('Profile not found!');
@@ -95,9 +97,10 @@ export class UserStore {
   loadContacts(profileId: string): Promise<void> {
     this.isFetchingContacts = true;
 
-    return apiFetchContacts(profileId)
+    return this.contactsApi
+      .fetchContacts(profileId)
       .then(
-        action((data) => {
+        action((data: ContactType[]) => {
           this.contacts = data;
         })
       )

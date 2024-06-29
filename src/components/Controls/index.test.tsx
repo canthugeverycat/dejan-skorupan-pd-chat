@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { useParams } from 'react-router-dom';
 
+import { messagesApi } from '../../globals/mocks';
 import { useStore } from '../../hooks/use-store';
 import { MessagesStore } from '../../store/messages';
 import Controls from './index';
@@ -15,7 +16,7 @@ jest.mock('../../hooks/use-store', () => ({
   useStore: jest.fn(),
 }));
 
-const mockMessagesStore = new MessagesStore();
+const mockMessagesStore = new MessagesStore(messagesApi);
 
 describe('Controls Component', () => {
   beforeEach(() => {

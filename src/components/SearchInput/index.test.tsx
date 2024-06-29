@@ -1,14 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import '@testing-library/jest-dom';
-
+import { contactsApi, profileApi } from '../../globals/mocks';
 import { useStore } from '../../hooks/use-store';
 import { UserStore } from '../../store/user';
 import SearchInput from './index';
 
+import '@testing-library/jest-dom';
+
 jest.mock('../../hooks/use-store');
 
-const mockStore = new UserStore();
+const mockStore = new UserStore(profileApi, contactsApi);
 
 describe('SearchInput component', () => {
   beforeEach(() => {
