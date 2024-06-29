@@ -50,7 +50,11 @@ const Contacts = () => {
           return (
             // Contact
             <li className="contacts-list-item" key={contact.id}>
-              <NavLink className={setActiveClass} to={`/chat/${chatId}`}>
+              <NavLink
+                className={setActiveClass}
+                to={`/chat/${chatId}`}
+                data-testid={`contact-${contact.id}`}
+              >
                 <Avatar type={contact.avatar} />
                 <div className="contacts-list-item-container">
                   {/* Name & Typing indicator */}

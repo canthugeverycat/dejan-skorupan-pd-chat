@@ -40,6 +40,7 @@ const Avatar = ({
 
   return (
     <div
+      data-testid={`avatar-${type}`}
       className={classNames(`avatar avatar--${size}`, {
         'avatar--interactable': onClick !== undefined,
         'avatar--selected': selected,

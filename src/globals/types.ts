@@ -23,3 +23,8 @@ export type MessageType = {
   createdAt: string;
   liked: boolean;
 };
+
+export type SoundConfig = {
+  url: string;
+  start?: number;
+};

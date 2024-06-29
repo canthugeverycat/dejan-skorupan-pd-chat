@@ -19,6 +19,7 @@ const Message = (message: MessageType) => {
 
   return (
     <div
+      data-testid={`message-${id}`}
       className={classNames('message', {
         'message--user': sender,
         'message--contact': !sender,

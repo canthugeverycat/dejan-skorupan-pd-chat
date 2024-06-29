@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { TiMessageTyping } from 'react-icons/ti';
 
+import { LOGO_DURABILITY_CLICKS, SOUNDS } from '../../globals/const';
+import { playSoundEffect } from '../../globals/playSoundEffect';
+
 import './index.scss';
 
 type LogoProps = {
@@ -17,9 +20,20 @@ type LogoProps = {
 const Logo = ({ href, size = 'medium' }: LogoProps) => {
   const [clickCounter, setClickCounter] = useState(0);
 
-  if (clickCounter >= 5) {
+  const handleMouseDown = () => {
+    if (clickCounter === LOGO_DURABILITY_CLICKS - 1) {
+      playSoundEffect(SOUNDS.LOGO_POP);
+    }
+
+    setClickCounter((prev) => prev + 1);
+  };
+
+  if (clickCounter >= LOGO_DURABILITY_CLICKS) {
     return (
-      <div className={`logo logo--${size} logo--splat`}>
+      <div
+        data-testid="logo-splat"
+        className={`logo logo--${size} logo--splat`}
+      >
         <TiMessageTyping />
       </div>
     );
@@ -27,9 +41,10 @@ const Logo = ({ href, size = 'medium' }: LogoProps) => {
 
   return (
     <a
+      data-testid="logo"
       className={`logo logo--${size}`}
       {...{ href }}
-      onClick={() => setClickCounter((prev) => prev + 1)}
+      onMouseDown={handleMouseDown}
     >
       <TiMessageTyping />
     </a>

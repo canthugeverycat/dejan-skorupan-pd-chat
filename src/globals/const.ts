@@ -13,9 +13,20 @@ export const WS_ACTIONS = {
 
 // Sound Effects
 export const SOUNDS = {
-  CREATE_PROFILE:
-    'https://cdn.freesound.org/previews/735/735907_15173542-lq.mp3',
-  LIKED_MESSAGE: 'https://cdn.freesound.org/previews/463/463388_9658839-lq.mp3',
-  RECEIVED_MESSAGE:
-    'https://cdn.freesound.org/previews/493/493551_6687700-lq.mp3',
+  CREATE_PROFILE: {
+    url: 'https://cdn.freesound.org/previews/735/735907_15173542-lq.mp3',
+  },
+  LIKED_MESSAGE: {
+    url: 'https://cdn.freesound.org/previews/463/463388_9658839-lq.mp3',
+  },
+  RECEIVED_MESSAGE: {
+    url: 'https://cdn.freesound.org/previews/493/493551_6687700-lq.mp3',
+  },
+  LOGO_POP: {
+    url: 'https://cdn.freesound.org/previews/724/724414_15504031-lq.mp3',
+    start: 0.15,
+  },
 } as const;
+
+// Misc
+export const LOGO_DURABILITY_CLICKS = 5;

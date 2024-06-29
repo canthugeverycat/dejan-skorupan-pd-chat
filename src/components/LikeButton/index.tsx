@@ -25,6 +25,7 @@ const LikeButton = ({ liked, onClick }: LikeButtonProps) => {
 
   return (
     <span
+      data-testid="like-button"
       className={classNames('like-button', {
         'like-button--liked': liked,
       })}

@@ -18,7 +18,7 @@ export class MessagesStore {
   isFetching: boolean = false;
   messages: { [key: string]: MessageType[] } = {}; // List of messages
   newMessageCount: { [key: string]: number } = {}; // List of new messages count by chats
-  isTyping: { [key: string]: boolean[] } = {}; // Typing indicator by chats
+  isTyping: { [key: string]: boolean } = {}; // Typing indicator by chats
 
   messageForm: { body: TextInput } = { body: new TextInput('') }; // Form for new message
 

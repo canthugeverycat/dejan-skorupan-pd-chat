@@ -8,6 +8,8 @@ import NewUser from './routes/new-user';
 
 import './App.scss';
 
+import { preloadAllSounds } from './globals/playSoundEffect';
+
 /**
  * Main skeleton of the app, handles routing
  */
@@ -25,6 +27,7 @@ const App = () => {
         navigate('/new-user');
       });
     }
+    preloadAllSounds();
   }, []);
 
   useEffect(() => {
