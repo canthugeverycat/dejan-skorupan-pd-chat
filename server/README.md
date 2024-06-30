@@ -334,7 +334,7 @@ Only once the contact stops typing will a message be sent out to the user. Messa
 
 ### Authentication
 
-We can add an authentication layer that will allow for multiple users once the app becomes more scalable.
+We can add an authentication layer that will allow for multiple users once the app becomes more scalable. We would extend the server/client to support JSON web tokens for authorization and send it in a header of every http request.
 
 ### DB Model
 
