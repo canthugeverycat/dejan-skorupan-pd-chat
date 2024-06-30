@@ -31,10 +31,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (userStore.profile) {
-      messagesStore.connectWebSocket();
-    }
-  }, [userStore.profile]);
+    messagesStore.connectWebSocket();
+
+    return () => messagesStore.disconnectWebSocket();
+  }, []);
 
   return (
     <div className="container">

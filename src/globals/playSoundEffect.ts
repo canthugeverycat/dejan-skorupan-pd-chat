@@ -13,7 +13,7 @@ export const playSoundEffect = (config: SoundConfig) => {
   const sound = new Audio(config.url);
   sound.currentTime = config.start || 0;
 
-  sound.play();
+  sound.play().catch((e) => console.warn('Sound Effect:', e));
 };
 
 /**

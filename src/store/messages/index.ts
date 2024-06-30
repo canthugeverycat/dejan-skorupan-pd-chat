@@ -80,6 +80,15 @@ export class MessagesStore {
     };
   }
 
+  /**
+   * Disconnects WebSocket
+   */
+  disconnectWebSocket() {
+    if (this.ws) {
+      this.ws?.close();
+    }
+  }
+
   /** Sends a new message to the contact
    *
    * @param {string} chatId Id of the current chat
