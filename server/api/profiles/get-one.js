@@ -17,7 +17,8 @@ router.get('/:id', async (req, res) => {
 
   try {
     const profile = await dbGetOne(id);
-    res.json(profile);
+
+    res.json(profile || {});
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
+import ErrorToast from './components/ErrorToast';
+import { preloadAllSounds } from './globals/playSoundEffect';
 import { useStore } from './hooks/use-store';
 import Chat from './routes/chat';
 import Home from './routes/home';
 import NewUser from './routes/new-user';
 
 import './App.scss';
-
-import { preloadAllSounds } from './globals/playSoundEffect';
 
 /**
  * Main skeleton of the app, handles routing
@@ -44,6 +44,7 @@ const App = () => {
         </Route>
         <Route path="/new-user" element={<NewUser />} />
       </Routes>
+      <ErrorToast />
     </div>
   );
 };

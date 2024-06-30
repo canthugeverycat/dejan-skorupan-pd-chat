@@ -1,7 +1,8 @@
 import { action, makeAutoObservable, runInAction } from 'mobx';
+import toast from 'react-hot-toast';
 
 import MessagesApi from '../../api/messages';
-import { SOUNDS, WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
+import { ERRORS, SOUNDS, WS_ACTIONS, WS_BASE_URL } from '../../globals/const';
 import { playSoundEffect } from '../../globals/playSoundEffect';
 import { MessageType } from '../../globals/types';
 import { TextInput } from '../forms/TextInput';
@@ -64,6 +65,7 @@ export class MessagesStore {
           // On error
           case WS_ACTIONS.ERROR:
             console.error(payload.error);
+            toast(ERRORS.WS);
             break;
 
           default:
@@ -74,6 +76,7 @@ export class MessagesStore {
 
     this.ws.onerror = (error) => {
       console.error('WebSocket error:', error);
+      toast(ERRORS.WS);
     };
   }
 
@@ -92,6 +95,10 @@ export class MessagesStore {
           this.messages[chatId].push(data);
         })
       )
+      .catch((e) => {
+        console.warn(e);
+        toast(ERRORS.MESSAGES_CREATE);
+      })
       .finally(action(() => (this.isCreating = false)));
   }
 
@@ -110,6 +117,10 @@ export class MessagesStore {
           this.messages[chatId] = data;
         })
       )
+      .catch((e) => {
+        console.warn(e);
+        toast(ERRORS.MESSAGES_FETCH);
+      })
       .finally(action(() => (this.isFetching = false)));
   }
 
@@ -130,6 +141,10 @@ export class MessagesStore {
           if (item) item.liked = data.liked;
         })
       )
+      .catch((e) => {
+        console.warn(e);
+        toast(ERRORS.MESSAGES_LIKE);
+      })
       .finally(action(() => (this.isCreating = false)));
   }
 

@@ -1,7 +1,9 @@
 import { action, makeAutoObservable } from 'mobx';
+import toast from 'react-hot-toast';
 
 import ContactsApi from '../../api/contacts';
 import ProfileApi from '../../api/profile';
+import { ERRORS } from '../../globals/const';
 import { ContactType, UserProfileType } from '../../globals/types';
 import { CustomSelect } from '../forms/CustomSelect';
 import { TextInput } from '../forms/TextInput';
@@ -63,6 +65,10 @@ export class UserStore {
           return this.loadContacts(data.id);
         })
       )
+      .catch((e) => {
+        console.warn(e);
+        toast(ERRORS.PROFILE_CREATE);
+      })
       .finally(action(() => (this.isLoadingProfile = false)));
   }
 
@@ -76,9 +82,12 @@ export class UserStore {
       .fetchProfile(this.existingProfileId)
       .then(
         action((data: UserProfileType) => {
-          if (!data) {
+          if (!Object.keys(data).length) {
             this.clearProfile();
-            throw new Error('Profile not found!');
+
+            toast(ERRORS.PROFILE_FETCH_NOT_FOUND);
+
+            return Promise.reject(false);
           }
 
           this.profile = data;
@@ -86,6 +95,14 @@ export class UserStore {
           return this.loadContacts(data.id);
         })
       )
+      .catch((e) => {
+        console.log('e', e);
+        if (e) {
+          toast(ERRORS.PROFILE_FETCH);
+        } else {
+          return Promise.reject();
+        }
+      })
       .finally(action(() => (this.isLoadingProfile = false)));
   }
 
@@ -104,6 +121,10 @@ export class UserStore {
           this.contacts = data;
         })
       )
+      .catch((e) => {
+        console.warn(e);
+        toast(ERRORS.CONTACTS_FETCH);
+      })
       .finally(action(() => (this.isFetchingContacts = false)));
   }
 

@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.error {
+  &-container {
+    margin-bottom: gutter(-2);
+  }
+
+  &-item {
+    border: 2px solid $red;
+
+    padding: gutter(1) gutter(4);
+
+    @include typography(12px, $red, 600, 'Mulish');
+  }
+
+  &-item-icon--reload {
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(1);
+    }
+  }
+}

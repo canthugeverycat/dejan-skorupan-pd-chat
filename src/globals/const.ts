@@ -30,3 +30,16 @@ export const SOUNDS = {
 
 // Misc
 export const LOGO_DURABILITY_CLICKS = 5;
+
+// Errors
+
+export const ERRORS = {
+  MESSAGES_CREATE: 'Failed to send message to contact.',
+  MESSAGES_FETCH: 'Failed to retrieve messages.',
+  MESSAGES_LIKE: 'Failed to like message.',
+  PROFILE_CREATE: 'Failed to create user profile.',
+  PROFILE_FETCH: 'Failed to retrieve user profile.',
+  PROFILE_FETCH_NOT_FOUND: 'User profile not found.',
+  CONTACTS_FETCH: 'Failed to retrieve contacts',
+  WS: 'Error communicating with the server.',
+} as const;
