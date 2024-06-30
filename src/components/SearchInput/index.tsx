@@ -15,7 +15,7 @@ const SearchInput = () => {
     <div className="search-input" data-testid="search-input">
       <input
         type="text"
-        placeholder="Search for an item"
+        placeholder="Search for a contact"
         {...userStore.contactsSearchString.toInput}
       />
       <IoMdSearch className="icon" size={16} />
