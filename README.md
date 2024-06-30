@@ -9,43 +9,43 @@ This technical challenge involves developing a simplified chat application inter
 - [📄 Available Scripts](#-available-scripts)
 - [📜 Documentation](#-documentation)
 
-## ✨ Features
+## 🌟 Features
 
 ℹ️ Logo component is fragile and can not handle too many clicks.
 
-#### User creation
+#### ⭐️ User creation
 
 You can create a new user or load an existing one if you are already logged in.
 
-#### Avatars
+#### ⭐️ Avatars
 
 Every profile and contact can pick their own avatar.
 
-#### Contact Search
+#### ⭐️ Contact Search
 
 You can search through your contacts for easier access.
 
-#### Messages
+#### ⭐️ Messages
 
 You can send and receive messages from contacts.
 
-#### Message Likes
+#### ⭐️ Message Likes
 
 You can like received messages or receive likes on your own.
 
-#### Typing Indicators
+#### ⭐️ Typing Indicators
 
 You will see when your contact is typing a message to you.
 
-#### New Message Indicators
+#### ⭐️ New Message Indicators
 
 New Messages (and typing indicators) will also be displayed on a contact in the list if you are not in that chat.
 
-#### Realistic Contact Reactions
+#### ⭐️ Realistic Contact Reactions
 
 A hand-made Bot Reaction mechanism was developed to simulate a real user on the other side. Your contacts can now send messages, simulate typing and even react to your messages!
 
-#### Sound Effects
+#### ⭐️ Sound Effects
 
 The app is enriched by using custom Sound Effects for key actions.
 
