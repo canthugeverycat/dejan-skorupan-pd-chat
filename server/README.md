@@ -4,28 +4,22 @@ This covers the server documentation that allows for chat between a user and the
 
 ## Table of Contents
 
-1. [💻 Development Environment](#-development-environment)
-2. [📄 Available Scripts](#-available-scripts)
-3. [🧱 Structure & organization](#-structure--organization)
-4. [📊 Database](#-database)
-   - [Profile](#profile)
-   - [Contact](#contact)
-   - [Message](#message)
-5. [🌍 API](#-api)
-   - [Profiles](#profiles)
-     - [`POST` /profiles](#post-profiles)
-     - [`GET` /profiles/${id}](#get-profilesid)
-   - [Contacts](#contacts)
-     - [`GET` /profiles/${profileId}/contacts](#get-profilesprofileidcontacts)
-   - [Messages](#messages)
-     - [`GET` /chats/${chatId}/messages](#get-chatschatidmessages)
-     - [`POST` /chats/${chatId}/messages](#post-chatschatidmessages)
-     - [`PUT` /chats/${chatId}/messages/${messageId}](#put-chatschatidmessagesmessageid)
-6. [🔌 Bot Reactions Mechanism](#-bot-reactions-mechanism)
-7. [🧠 To improve](#-to-improve)
-   - [Authentication](#authentication)
-   - [DB Model](#db-model)
-   - [Paging](#paging)
+- [💻 Development Environment](#-development-environment)
+- [📄 Available Scripts](#-available-scripts)
+- [🧱 Structure & organization](#-structure--organization)
+- [📊 Database](#-database)
+  - [Profile](#profile)
+  - [Contact](#contact)
+  - [Message](#message)
+- [🌍 API](#-api)
+  - [Profiles](#profiles)
+  - [Contacts](#contacts)
+  - [Messages](#messages)
+- [🤖 Bot Reactions Mechanism](#-bot-reactions-mechanism)
+- [🧠 To improve](#-to-improve)
+  - [Authentication](#authentication)
+  - [DB Model](#db-model)
+  - [Paging](#paging)
 
 ## 💻 Development Environment
 
@@ -33,7 +27,7 @@ The server was developed using the following modules:
 
 - **NodeJS** v21.7.3
 - **Express** v4.19.2
-- **ws** 8.17.0
+- **ws** 8.17.1
 
 ## 📄 Available Scripts
 
@@ -45,15 +39,17 @@ This will start the server on [http://localhost:8000](http://localhost:8000).
 
 ## 🧱 Structure & organization
 
---**api**\
-----**[entity]**\
-------[*endpoint*].js\
---**db**\
-----**[entity]**\
-------[*action*].js\
---**ws**\
-----**[entity]**\
-------[*action*].js
+- `api`
+  - [`entity`]
+    - [`endpoint`].js
+- `db`
+  - [`entity`]
+    - [`operation`].js
+- `ws`
+  - [`entity`]
+    - [`operation`].js
+- `utils`
+  - [`utilityFn`].js
 
 The structure of the server is split into multiple layers, each serving their specific purpose.
 
@@ -61,7 +57,9 @@ The [**api**] layer is in charge of setting up API endpoints and handling http r
 
 [**db**] layer governs over all of the database operations.
 
-While the [**ws**] layer handles WebSocket communication for specific actions.
+The [**ws**] layer handles WebSocket communication for specific actions.
+
+White the [**utils**] folder holds utility functions.
 
 ## 📊 Database
 
@@ -74,7 +72,7 @@ The database features the following models:
 ```js
 // Profile
 Profile = {
-  id: number,
+  id: string,
   name: string,
   avatar: Avatar,
 };
@@ -88,7 +86,7 @@ Avatar = number.from(0).to(15);
 ```js
 // Contact
 Contact = {
-  id: number,
+  id: string,
   profileId: string,
   name: string,
   gender: string,
@@ -103,8 +101,8 @@ Avatar = number.from(0).to(15);
 
 ```js
 // Message
-Messages = {
-  id: number,
+Message = {
+  id: string,
   chatId: string,
   body: string,
   createdAt: string,
@@ -147,7 +145,7 @@ Creates a new user profile.
 
 ```js
 {
-  id: number,
+  id: string,
   name: string,
   avatar: number.from(0).to(15),
 }
@@ -169,7 +167,7 @@ Fetches an existing user profile.
 
 ```js
 {
-  id: number,
+  id: string,
   name: string,
   avatar: number.from(0).to(15),
 }
@@ -196,7 +194,7 @@ Fetches a list of contacts for the user profile.
 ```js
 [
   {
-    id: number,
+    id: string,
     profileId: string,
     name: string,
     gender: string,
@@ -226,7 +224,7 @@ Fetches all messages for the current chat.
 ```js
 [
   {
-    id: number,
+    id: string,
     chatId: string,
     body: string,
     createdAt: string,
@@ -260,7 +258,7 @@ Creates a new message in the current chat.
 
 ```js
 {
-  id: number,
+  id: string,
   chatId: string,
   body: string,
   createdAt: string,
@@ -294,7 +292,7 @@ Updates an existing message in the current chat.
 
 ```js
 {
-  id: number,
+  id: string,
   chatId: string,
   body: string,
   createdAt: string,
@@ -303,7 +301,7 @@ Updates an existing message in the current chat.
 };
 ```
 
-## 🔌 Bot Reactions Mechanism
+## 🤖 Bot Reactions Mechanism
 
 To ensure real time communication is achieved within the app we use websockets.
 
@@ -320,17 +318,17 @@ To give a more realisting liking experience a time range (**LIKE_TIME_MIN**, **L
 
 ### Contact is typing
 
-Contact will send out a _isTyping_ event through the websocket to indicate that it started typing the message. It is sent out a little after receiving the message, or in case the message is liked - after **LIKE_TIME** passes.
+Contact will send out a _isTyping_ event through the websocket to indicate that it started typing the message. It is sent out after **REACTION_TIME** passes (time it takes to react to a message), or in case the message is liked - after **LIKE_TIME** passes.
 
 ### Contact stops typing
 
 A contact will send out a _isTyping = false_ event once the generator determines the time a user would have taken to type the message is passed.
 
-It sumarizes **LIKE_TIME** if applicable, **REACTION_TIME**, **BOT_TYPING_SPEED_CHARS_PER_SECOND** and generated **messageBody**.
+It calculates **LIKE_TIME** if applicable, **REACTION_TIME**, **BOT_TYPING_SPEED_CHARS_PER_SECOND** and generated **messageBody** to determine when the message has been typed out.
 
 ### Contact sends a message
 
-Only once the contact stops typing will a message be sent out to the user. Messages are a randomly generated ipsum with a variable number of words. The number of words will determine how fast the bot will reply.
+Only once the contact stops typing will a message be sent out to the user. Messages are a randomly generated lipsum with a variable number of words. The number of words will determine how fast the bot will reply.
 
 ## 🧠 To improve
 

@@ -21,7 +21,7 @@ const Contacts = () => {
   const { id } = useParams();
 
   const {
-    userStore: { filtered, profile },
+    userStore: { filteredContacts, profile },
     messagesStore,
   } = useStore();
 
@@ -42,7 +42,7 @@ const Contacts = () => {
 
       {/* List */}
       <ul className="contacts-list">
-        {filtered.map((contact) => {
+        {filteredContacts.map((contact) => {
           const chatId = `${profile?.id}-${contact.id}`;
           const newMessages = messagesStore.newMessageCount[chatId];
           const isTyping = messagesStore.isTyping[chatId];

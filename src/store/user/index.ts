@@ -16,17 +16,14 @@ export class UserStore {
   isFetchingContacts: boolean = false;
 
   contacts: ContactType[] = []; // List of contacts
-  contactsSearchString: TextInput = new TextInput('');
-
   profile: UserProfileType | null = null; // User profile
 
   existingProfileId: string = localStorage.getItem('pd-chat-user') || '';
-
+  contactsSearchString: TextInput = new TextInput('');
   // New user profile form
   profileForm: { name: TextInput; avatar: CustomSelect } = {
     name: new TextInput(''),
-    // Preselect a random avatar
-    avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1),
+    avatar: new CustomSelect(Math.floor(Math.random() * 15) + 1), // Preselect random avatar
   };
 
   constructor(
@@ -37,7 +34,7 @@ export class UserStore {
   }
 
   // Contacts with applied search
-  get filtered(): ContactType[] {
+  get filteredContacts(): ContactType[] {
     return this.contacts.filter((contact) =>
       contact.name
         .toLowerCase()

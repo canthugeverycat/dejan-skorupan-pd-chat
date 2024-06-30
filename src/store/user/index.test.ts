@@ -102,7 +102,7 @@ describe('UserStore', () => {
     userStore.contacts = mockContacts as ContactType[];
     userStore.contactsSearchString.setValue('jane');
 
-    expect(userStore.filtered).toHaveLength(1);
-    expect(userStore.filtered[0].name).toEqual('Jane Doe');
+    expect(userStore.filteredContacts).toHaveLength(1);
+    expect(userStore.filteredContacts[0].name).toEqual('Jane Doe');
   });
 });
