@@ -96,7 +96,6 @@ export class UserStore {
         })
       )
       .catch((e) => {
-        console.log('e', e);
         if (e) {
           toast(ERRORS.PROFILE_FETCH);
         } else {

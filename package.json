@@ -28,10 +28,12 @@
     "ws": "^8.17.1"
   },
   "scripts": {
+    "start-app": "node ./server/index.js & react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "node ./server/index.js"
   },
   "eslintConfig": {
     "extends": [

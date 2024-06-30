@@ -72,8 +72,10 @@ export const toggleLikeMessage = async (message: MessageType) => {
   }
 };
 
-export default {
+const api = {
   fetchMessages,
   createMessage,
   toggleLikeMessage,
 };
+
+export default api;

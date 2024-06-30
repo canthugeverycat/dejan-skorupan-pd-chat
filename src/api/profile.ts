@@ -44,7 +44,9 @@ export const fetchProfile = async (profileId: string) => {
   }
 };
 
-export default {
+const api = {
   createProfile,
   fetchProfile,
 };
+
+export default api;

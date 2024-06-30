@@ -21,6 +21,8 @@ export const fetchContacts = async (profileId: string) => {
   }
 };
 
-export default {
+const api = {
   fetchContacts,
 };
+
+export default api;

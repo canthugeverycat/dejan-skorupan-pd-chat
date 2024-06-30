@@ -54,6 +54,9 @@ const Contacts = () => {
                 className={setActiveClass}
                 to={`/chat/${chatId}`}
                 data-testid={`contact-${contact.id}`}
+                onClick={() => {
+                  messagesStore.messageForm.body.setValue('');
+                }}
               >
                 <Avatar type={contact.avatar} />
                 <div className="contacts-list-item-container">
