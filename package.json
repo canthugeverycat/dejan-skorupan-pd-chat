@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start-app": "node ./server/index.js & react-scripts start",
-    "start": "node ./server/index.js & react-scripts start",
+    "start": "node ./server/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -61,5 +61,8 @@
     "postcss": "^8.4.38",
     "prettier": "^3.3.0",
     "prettier-plugin-css-order": "^2.1.2"
+  },
+  "engines": {
+    "node": "21.7.3"
   }
 }
