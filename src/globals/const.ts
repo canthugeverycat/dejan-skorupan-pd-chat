@@ -3,7 +3,7 @@ export const BASE_URL = 'pd-server-7a1275301911.herokuapp.com' as const;
 export const API_BASE_URL = `https://${BASE_URL}/api` as const;
 
 // WebSockets
-export const WS_BASE_URL = `ws://${BASE_URL}` as const;
+export const WS_BASE_URL = `wss://${BASE_URL}` as const;
 export const WS_ACTIONS = {
   TYPING: 'typing',
   MESSAGE: 'message',
