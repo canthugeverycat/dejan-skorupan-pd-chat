@@ -2,7 +2,7 @@
 
 # PD Chat
 
-[🟢 Live Demo](https://pd-chat-dd1b96397864.herokuapp.com)
+[🟢 Live Demo](https://pd-chat-c74df9ebb67e.herokuapp.com)
 
 This is a simplified chat application interface using React + TypeScript. The system simulates the process of sending messages to other users, focusing on creating a user-friendly interface, managing application state, and handling user interactions effectively.
 
