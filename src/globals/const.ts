@@ -1,5 +1,5 @@
 // API URLs
-export const BASE_URL = 'pd-server-7a1275301911.herokuapp.com' as const;
+export const BASE_URL = 'pd-server-49d921c5f5fd.herokuapp.com/' as const;
 export const API_BASE_URL = `https://${BASE_URL}/api` as const;
 
 // WebSockets
